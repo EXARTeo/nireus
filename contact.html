@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Επικοινωνία · Nireus Boat Rentals — Σύβοτα</title>
+  <meta name="description" content="Nireus Boat Rentals — Ενοικίαση βάρκας στα Σύβοτα."/>
+  <link rel="icon" href="assets/logo.svg"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style> .nav a[href$="contact.html"]{background: color-mix(in oklab, var(--sea), white 70%)} </style>
+</head>
+<body>
+  
+<header class="site-header">
+  <div class="container nav" id="nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.svg" alt="Nireus logo" class="brand-logo"/>
+      <div class="brand-title">Nireus • Σύβοτα</div>
+    </a>
+    <button class="mobile-toggle" aria-label="Μενού">☰</button>
+    <ul>
+      <li><a href="boats.html">Ενοικίαση</a></li>
+      <li><a href="fleet.html">Στόλος</a></li>
+      <li><a href="pricing.html">Τιμές</a></li>
+      <li><a href="routes.html">Διαδρομές</a></li>
+      <li><a href="gallery.html">Φωτογραφίες</a></li>
+      <li><a href="about.html">Σχετικά</a></li>
+      <li><a href="faq.html">Συχνές Ερωτήσεις</a></li>
+      <li><a href="contact.html">Επικοινωνία</a></li>
+    </ul>
+  </div>
+</header>
+
+  <main>
+    <div class="container">
+      <div class='breadcrumbs'>Αρχική · Επικοινωνία</div>
+    </div>
+    
+<section class="section">
+  <div class="container">
+    <h2>Επικοινωνία</h2>
+    <div class="grid-two">
+      <div>
+        <p><strong>Τηλέφωνο:</strong> <a href="tel:+306900000000">+30 690 000 0000</a><br/>
+        <strong>WhatsApp:</strong> <a href="https://wa.me/306900000000">wa.me/306900000000</a><br/>
+        <strong>Email:</strong> <a href="mailto:info@nireus-syvota.gr">info@nireus-syvota.gr</a></p>
+        <p><strong>Διεύθυνση:</strong> Λιμάνι Συβότων, 46100</p>
+        <div class="notice small">Χάρτης Google: προσθέστε το pin της επιχείρησης σας όταν δημιουργηθεί.</div>
+      </div>
+      <div>
+        <form>
+          <div class="grid-two">
+            <div><label>Όνομα</label><br/><input placeholder="Π.χ. Νίκος Παπαδόπουλος"/></div>
+            <div><label>Τηλέφωνο</label><br/><input placeholder="+30 ..."/></div>
+          </div>
+          <label>Email</label><input type="email" placeholder="you@example.com"/>
+          <label>Μήνυμα</label><textarea rows="5" placeholder="Θα ήθελα πληροφορίες για..."></textarea>
+          <div class="cta">
+            <button type="button" class="btn btn-primary" onclick="whatsapp()">Στείλτε μέσω WhatsApp</button>
+            <a class="btn btn-ghost" href="tel:+306900000000">Τηλεφώνησε</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  
+<footer class="footer">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <div>© 2025 Nireus Boat Rentals — Σύβοτα</div>
+    </div>
+    <div class="small" style="margin-top:8px">
+      * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

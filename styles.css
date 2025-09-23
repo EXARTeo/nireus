@@ -1,0 +1,326 @@
+/* ========== Nireus Boat Rentals — Clean CSS ========== */
+
+/* --------- Design tokens --------- */
+:root{
+  --sand:#efebe5;
+  --wheat:#d9cea0;
+  --sea:#9ec1cf;
+  --ink:#1c1f24;
+  --ink-soft:#2b3139;
+  --white:#ffffff;
+
+  /* Header height */
+  --header-h: 64px;
+
+  /* Page fixed background (edit me) */
+  --bg-image: url("img/sea-bg.jpg"); /* βάλε εδώ τη δική σου εικόνα */
+  --bg-overlay: linear-gradient(to bottom, rgba(255,255,255,.35), rgba(255,255,255,.55));
+}
+
+/* --------- Base / Reset --------- */
+*{ box-sizing:border-box }
+html{ scroll-behavior:smooth; height:100% }
+body{
+  margin:0; min-height:100%;
+  font-family: system-ui,-apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--ink);
+  line-height:1.6;
+
+  /* space for fixed header */
+  padding-top: var(--header-h);
+  background: transparent; /* αφήνουμε να φανεί το fixed bg */
+}
+
+/* Fixed, full-page background that stays put */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    var(--bg-overlay),
+    var(--bg-image);
+  background-repeat:no-repeat, no-repeat;
+  background-position:center center, center center;
+  background-size:cover, cover;
+  /* fallback αν δεν θες εικόνα: */
+  /* background: linear-gradient(180deg, color-mix(in oklab, var(--sea), white 30%), var(--sand)); */
+}
+
+.container{ width:min(1100px, 92%); margin:0 auto }
+
+/* ========== Header ========== */
+.site-header{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  backdrop-filter: blur(6px) saturate(100%);
+  -webkit-backdrop-filter: blur(6px) saturate(130%);
+  background: rgba(255,255,255,.78);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+.site-header .nav{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; min-height:var(--header-h);
+}
+.brand{ display:inline-flex; align-items:center; gap:10px; color:var(--ink) }
+.brand-logo{ width:32px; height:32px }
+.brand-title{ font-weight:600 }
+
+/* Menu */
+.nav ul{
+  display:flex; align-items:center; gap:6px;
+  list-style:none; margin:0; padding:0
+}
+.nav a{
+  padding:8px 12px; border-radius:10px;
+  color:var(--ink-soft); transition:.2s; text-decoration:none
+}
+.nav a:hover{ background:rgba(158,193,207,.18); color:var(--ink) }
+.nav a[aria-current="page"]{ color: var(--sea) }
+
+/* Button στιλ για "Επικοινωνία" (διακριτικό) */
+.btn.btn-primary{
+  background:rgba(158,193,207,.20);
+  border:1px solid rgba(158,193,207,.35);
+  color:var(--ink)
+}
+.btn.btn-primary:hover{ background:rgba(158,193,207,.30) }
+
+/* ========== Mobile menu (απλό & μικρό) ========== */
+.mobile-toggle{
+  appearance:none; border:0; background:transparent; font-size:22px;
+  padding:6px 8px; border-radius:10px; color:var(--ink); display:none;
+}
+@media (max-width:900px){
+  :root{ --header-h:56px }
+  .mobile-toggle{ display:inline-block }
+  .nav{ flex-wrap:wrap }
+  .nav ul{
+    width:100%; flex-direction:column; align-items:stretch; gap:4px;
+    max-height:0; overflow:hidden; padding:0;
+    transition:max-height .25s ease, padding .25s ease;
+  }
+  .nav.open ul{ max-height:70vh; padding:6px 0 }
+  .nav a{ padding:10px 12px }
+}
+
+/* ===== Hero με video — σωστή στοίβαξη ===== */
+
+.hero{
+  position:relative; overflow:hidden;
+  /* αφήνουμε το global fixed background να φαίνεται */
+  background: transparent;
+}
+.hero .wrap{
+  display:grid; grid-template-columns: 1.2fr .8fr; gap:40px; padding:72px 0 56px
+}
+@media (max-width: 960px){ .hero .wrap{ grid-template-columns:1fr } }
+
+
+.hero.hero-with-video{
+  position: relative;
+  isolation: isolate;                    /* νέο stacking context */
+  min-height: clamp(420px, 82vh, 820px);
+  color: #fff;                           /* κείμενο πάνω από το video */
+  background: transparent;               /* αφήνουμε να φαίνεται το global fixed bg */
+}
+
+/* Το layer του video */
+.hero.hero-with-video .hero-video-wrap{
+  position: absolute; inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Το ίδιο το <video> γεμίζει το hero */
+.hero.hero-with-video .hero-video{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  /* μικρό “σβήσιμο” για αναγνωσιμότητα κειμένου */
+  filter: brightness(.72) contrast(1.05);
+  /* iOS/WebKit σταθερότητα */
+  transform: translateZ(0);
+}
+
+/* Χρησιμοποιούμε ΤΟ ΔΙΚΟ ΣΟΥ overlay div */
+.hero.hero-with-video .hero-overlay{
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35));
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Το περιεχόμενο (τίτλοι/κουμπιά) ΠΑΝΩ από όλα */
+.hero.hero-with-video .hero-content{
+  position: relative;
+  z-index: 2;
+}
+
+/* Αν θες grid όπως πριν */
+.hero.hero-with-video .wrap{
+  display:grid; grid-template-columns: 1.2fr .8fr; gap:40px;
+  padding: 72px 0 56px;
+}
+@media (max-width: 960px){
+  .hero.hero-with-video .wrap{ grid-template-columns: 1fr }
+}
+
+
+/*TODO PIO SKOTINO ME AYTO */
+/* Δώσε λίγη ανάσα στα στοιχεία */
+.hero.hero-with-video .cta{ margin-top: 20px; gap: 12px }
+.hero.hero-with-video .kicker{ letter-spacing:.18em; font-weight:800; font-size:12px }
+
+/* Εξασφάλισε ότι το video δεν «καίει» το κείμενο */
+.hero.hero-with-video .hero-video{
+  filter: brightness(.6) contrast(1.08) saturate(1.02);
+}
+/*TODO PIO SKOTINO ME AYTO */
+
+.kicker{ font-weight:800; color:var(--sea); letter-spacing:.2em; text-transform:uppercase; font-size:12px }
+h1{ font-size: clamp(28px, 4vw, 46px); margin:.2em 0 .4em }
+.lead{ font-size: clamp(16px, 2.2vw, 20px); color:var(--wheat-soft) }
+.cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
+
+/* ==================== BUTTOMS ==================== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:12px 16px; border-radius:14px; border:1px solid transparent;
+  font-weight: 800; text-decoration:none;
+  transition: background-color .2s ease, border-color .2s ease, transform .05s ease;
+}
+
+/* Primary = θαλασσί της παλέτας */
+.btn.btn-primary{
+  background: var(--sea);
+  border-color: color-mix(in oklab, var(--sea), black 12%);
+  color: var(--ink); /* σκουρόχρωμο κείμενο για κοντράστ */
+}
+.btn.btn-primary:hover{ 
+  filter: brightness(1.05);
+  color: var(--sea); /* σκουρόχρωμο κείμενο για κοντράστ */
+}
+.btn.btn-primary:active{ 
+  transform: translateY(1px)
+}
+
+/* Ghost = διάφανο με περίγραμμα στο wheat */
+.btn.btn-ghost{
+  background:rgba(158,193,207,.30);
+  border-color: color-mix(in oklab, var(--wheat), black 12%);
+  color: var(--wheat);
+}
+
+.btn.btn-ghost:hover{
+  background: var(--wheat);
+  border-color: color-mix(in oklab, var(--wheat), black 12%);
+  color: var(--ink); /* σκουρόχρωμο κείμενο για κοντράστ */
+}
+.btn.btn-ghost:active{ transform: translateY(1px) }
+
+/* Στο hero, ενισχύουμε hover states πάνω σε σκοτεινό φόντο */
+.hero.hero-with-video .btn.btn-primary:hover{
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.hero.hero-with-video .btn.btn-ghost{
+  /* κάνε το περίγραμμα πιο ευδιάκριτο πάνω στο video */
+  border-color: color-mix(in oklab, var(--wheat), white 10%);
+}
+/* ============================================================== */
+
+.card-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px }
+@media (max-width: 900px){ .card-grid{ grid-template-columns: repeat(2,1fr) } }
+@media (max-width: 560px){ .card-grid{ grid-template-columns: 1fr } }
+
+.card{
+  background:var(--white);
+  border:1px solid color-mix(in oklab, var(--wheat), black 10%);
+  border-radius:18px; overflow:hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.04);
+}
+.card .img{ aspect-ratio: 16/10; background:#dfe8eb; overflow:hidden }
+.card .img img{ width:100%; height:100%; object-fit:cover; display:block }
+.card .body{ padding:16px }
+.card .btn.btn-ghost{
+  background: transparent;
+}
+.card .btn.btn-ghost:hover{
+  background: var(--wheat);
+  color: var(--white);
+}
+
+
+.section{ padding:56px 0 }
+.section h2{ font-size: clamp(22px, 3vw, 34px); margin:0 0 8px }
+.section .sub{ color:var(--ink-soft); margin:0 0 22px }
+
+.gallery{ display:grid; grid-template-columns: repeat(12, 1fr); gap:10px }
+.tile{ grid-column: span 4; aspect-ratio: 4/3; border-radius:16px; overflow:hidden }
+.tile.wide{ grid-column: span 8; aspect-ratio: 16/9 }
+.tile.tall{ grid-column: span 4; aspect-ratio: 3/4 }
+.tile img{ width:100%; height:100%; object-fit:cover; display:block }
+
+.footer{
+  padding:30px 0;
+  border-top:1px solid color-mix(in oklab, var(--wheat), black 10%);
+  color:var(--ink-soft); font-size:14px;
+}
+
+.badges{ display:flex; gap:8px; flex-wrap:wrap }
+.badge{ background:var(--wheat); padding:6px 10px; border-radius:999px; font-weight:700 }
+
+.grid-two{ display:grid; grid-template-columns: 1fr 1fr; gap:24px }
+@media (max-width: 900px){ .grid-two{ grid-template-columns:1fr } }
+
+.feature{ display:flex; gap:12px; align-items:flex-start }
+.feature i{ font-style:normal; font-size:22px }
+
+.list{ padding-left:18px }
+
+.hero-photos{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px }
+.hero-photos img{ width:100%; height:190px; object-fit:cover; border-radius:14px }
+
+.notice{
+  padding:12px 14px; border-left:4px solid var(--sea);
+  background: color-mix(in oklab, var(--sea), white 82%);
+  border-radius:10px
+}
+
+.table{
+  width:100%; border-collapse:collapse; background:var(--white);
+  border-radius:16px; overflow:hidden; box-shadow: 0 8px 22px rgba(0,0,0,.04)
+}
+.table th,.table td{
+  padding:12px 10px;
+  border-bottom:1px solid color-mix(in oklab, var(--wheat), black 10%);
+  text-align:left
+}
+.table th{ background: color-mix(in oklab, var(--wheat), white 70%); font-size:14px }
+
+.figure{
+  background:var(--white);
+  border:1px solid color-mix(in oklab, var(--wheat), black 10%);
+  border-radius:16px; overflow:hidden
+}
+.figure img{ width:100%; display:block }
+
+.small{ font-size:13px; color:var(--ink-soft) }
+
+form{ display:grid; gap:12px }
+input, textarea, select{
+  padding:12px 12px;
+  border:1px solid color-mix(in oklab, var(--wheat), black 10%);
+  border-radius:12px; background:var(--white);
+  font: inherit;
+}
+input:focus, textarea:focus, select:focus{
+  outline:2px solid color-mix(in oklab, var(--sea), black 6%)
+}
+label{ font-weight:700; font-size:14px }
+
+hr.sep{
+  border:0; height:1px;
+  background: color-mix(in oklab, var(--wheat), black 14%);
+  margin:24px 0
+}
+
+.breadcrumbs{ font-size:13px; color:var(--ink-soft); margin-bottom:12px }
+.breadcrumbs a{ color:inherit }
