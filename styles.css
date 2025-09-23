@@ -27,11 +27,10 @@ body{
   line-height:1.6;
 
   /* space for fixed header */
-  padding-top: var(--header-h);
+  /* padding-top: var(--header-h); */
   background: transparent; /* αφήνουμε να φανεί το fixed bg */
 }
 
-/* Fixed, full-page background that stays put */
 body::before{
   content:"";
   position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -41,8 +40,6 @@ body::before{
   background-repeat:no-repeat, no-repeat;
   background-position:center center, center center;
   background-size:cover, cover;
-  /* fallback αν δεν θες εικόνα: */
-  /* background: linear-gradient(180deg, color-mix(in oklab, var(--sea), white 30%), var(--sand)); */
 }
 
 .container{ width:min(1100px, 92%); margin:0 auto }
@@ -55,6 +52,7 @@ body::before{
   background: rgba(255,255,255,.78);
   border-bottom: 1px solid rgba(0,0,0,.08);
 }
+
 .site-header .nav{
   display:flex; align-items:center; justify-content:space-between;
   gap:10px; min-height:var(--header-h);
@@ -83,6 +81,7 @@ body::before{
 }
 .btn.btn-primary:hover{ background:rgba(158,193,207,.30) }
 
+
 /* ========== Mobile menu (απλό & μικρό) ========== */
 .mobile-toggle{
   appearance:none; border:0; background:transparent; font-size:22px;
@@ -103,82 +102,148 @@ body::before{
 
 /* ===== Hero με video — σωστή στοίβαξη ===== */
 
+:root{
+  --hero-h: clamp(420px, 82svh, 820px);
+}
+@supports not (height: 1svh){
+  :root{ --hero-h: clamp(420px, 82vh, 820px) } /* fallback */
+}
+
 .hero{
-  position:relative; overflow:hidden;
-  /* αφήνουμε το global fixed background να φαίνεται */
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--hero-h);
+  overflow: hidden;
   background: transparent;
+  z-index: 0;
 }
 .hero .wrap{
-  display:grid; grid-template-columns: 1.2fr .8fr; gap:40px; padding:72px 0 56px
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:40px;
+  padding:72px 0 0; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
 }
-@media (max-width: 960px){ .hero .wrap{ grid-template-columns:1fr } }
+@media (max-width: 960px){ 
+  .hero .wrap{ 
+    padding:56px 0 0; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
+    grid-template-columns:1fr
+  } 
+}
 
 
 .hero.hero-with-video{
-  position: relative;
-  isolation: isolate;                    /* νέο stacking context */
-  min-height: clamp(420px, 82vh, 820px);
-  color: #fff;                           /* κείμενο πάνω από το video */
-  background: transparent;               /* αφήνουμε να φαίνεται το global fixed bg */
+  isolation: isolate;
+  color:#fff;
 }
-
-/* Το layer του video */
 .hero.hero-with-video .hero-video-wrap{
-  position: absolute; inset: 0;
+  position:absolute; 
+  inset:0;
   z-index: 0;
-  overflow: hidden;
+  overflow:hidden;
+  background:#000;
 }
-
-/* Το ίδιο το <video> γεμίζει το hero */
 .hero.hero-with-video .hero-video{
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  /* μικρό “σβήσιμο” για αναγνωσιμότητα κειμένου */
-  filter: brightness(.72) contrast(1.05);
-  /* iOS/WebKit σταθερότητα */
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover; 
+  object-position:center;
+  filter: brightness(.6) contrast(1.08) saturate(1.02);
   transform: translateZ(0);
+  display:block;
 }
 
-/* Χρησιμοποιούμε ΤΟ ΔΙΚΟ ΣΟΥ overlay div */
 .hero.hero-with-video .hero-overlay{
-  position: absolute; inset: 0;
+  position:absolute; inset:0;
   background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35));
-  z-index: 1;
-  pointer-events: none;
+  z-index:1; pointer-events:none;
 }
-
-/* Το περιεχόμενο (τίτλοι/κουμπιά) ΠΑΝΩ από όλα */
-.hero.hero-with-video .hero-content{
-  position: relative;
-  z-index: 2;
-}
-
-/* Αν θες grid όπως πριν */
-.hero.hero-with-video .wrap{
-  display:grid; grid-template-columns: 1.2fr .8fr; gap:40px;
-  padding: 72px 0 56px;
-}
-@media (max-width: 960px){
-  .hero.hero-with-video .wrap{ grid-template-columns: 1fr }
-}
-
+.hero.hero-with-video .hero-content{ position:relative; z-index:2 }
 
 /*TODO PIO SKOTINO ME AYTO */
 /* Δώσε λίγη ανάσα στα στοιχεία */
 .hero.hero-with-video .cta{ margin-top: 20px; gap: 12px }
 .hero.hero-with-video .kicker{ letter-spacing:.18em; font-weight:800; font-size:12px }
 
-/* Εξασφάλισε ότι το video δεν «καίει» το κείμενο */
-.hero.hero-with-video .hero-video{
-  filter: brightness(.6) contrast(1.08) saturate(1.02);
-}
 /*TODO PIO SKOTINO ME AYTO */
 
 .kicker{ font-weight:800; color:var(--sea); letter-spacing:.2em; text-transform:uppercase; font-size:12px }
 h1{ font-size: clamp(28px, 4vw, 46px); margin:.2em 0 .4em }
 .lead{ font-size: clamp(16px, 2.2vw, 20px); color:var(--wheat-soft) }
 .cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
+
+
+/* ΜΟΝΟ όταν υπάρχει hero πριν από το main, πρόσθεσε offset ίσο με το ύψος του hero */
+.hero + main{
+  margin-top: var(--hero-h);
+  position: relative;
+  z-index: 1;
+  background: var(--sea); /* TODO */
+  padding-top: 1px;                  /* μόνο για να σπάσει το collapsing */
+
+}
+
+.hero + main > *:first-child{ margin-top: 0 }
+
+
+main{ background: var(--sand);}
+
+
+/* ==================== WAVE ==================== */
+
+
+:root{
+  --wave-fill-h: 96px;   /* ύψος του “καπακιού” */
+}
+
+/* βεβαιώσου ότι το main είναι πάνω από το hero */
+.hero + main{ position:relative; z-index:1 }
+
+/* ΓΕΜΑΤΟ κύμα που “σκεπάζει” το hero */
+.hero + main::before{
+  content:"";
+  position:absolute;
+  top: calc(-1 * var(--wave-fill-h) + 1px);
+  left:50%;
+  transform: translateX(-50%);
+
+  width: 100%;                   /* πιο φαρδύ από την οθόνη → κανένα κόψιμο στα άκρα */
+  height: var(--wave-fill-h);
+  pointer-events: none;
+
+  /* ίδιο φόντο με το main για το τέλειο blend */
+  background: inherit;
+
+  /* Μάσκα SVG: κυματιστή κορυφή + γεμισμένο προς τα κάτω */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 60 C150 20 300 100 450 60 S750 20 900 60 S1050 100 1200 60 L1200 120 L0 120 Z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 60 C150 20 300 100 450 60 S750 20 900 60 S1050 100 1200 60 L1200 120 L0 120 Z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: 50% 0;
+          mask-position: 50% 0;
+  -webkit-mask-size: 140vw 100%;
+          mask-size: 140vw 100%;
+}
+
+
+
+/* κίνηση της μάσκας αριστερά-δεξιά */
+@keyframes wave-slide {
+  0%   { -webkit-mask-position: 45% 0; mask-position: 45% 0; }
+  50%  { -webkit-mask-position: 55% 0; mask-position: 55% 0; }
+  100% { -webkit-mask-position: 45% 0; mask-position: 45% 0; }
+}
+
+/* ενεργοποίηση */
+.hero + main::before{
+  animation: wave-slide 14s ease-in-out infinite;
+}
+
+
+
+
+
 
 /* ==================== BUTTOMS ==================== */
 .btn{
