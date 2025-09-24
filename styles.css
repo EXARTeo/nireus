@@ -121,11 +121,11 @@ body::before{
   display:grid;
   grid-template-columns: 1.2fr .8fr;
   gap:40px;
-  padding:72px 0 0; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
+  padding:72px 0 64px; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
 }
 @media (max-width: 960px){ 
   .hero .wrap{ 
-    padding:56px 0 0; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
+    padding:56px 0 64px; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
     grid-template-columns:1fr
   } 
 }
@@ -184,61 +184,78 @@ h1{ font-size: clamp(28px, 4vw, 46px); margin:.2em 0 .4em }
 
 }
 
-.hero + main > *:first-child{ margin-top: 0 }
-
-
 main{ background: var(--sand);}
 
 
-/* ==================== WAVE ==================== */
-
-
+/* =============== Wave separator — inline SVG =============== */
 :root{
-  --wave-fill-h: 96px;   /* ύψος του “καπακιού” */
+  /* Γεωμετρία */
+  --wave-h: 50px;
+  --wave-overlap: clamp(10px, 6svh, 64px);
+
+  /* Κίνηση (δεξιά → κάτω → επιστροφή) */
+  --wave-shift-px: 80px;   /* οριζόντια μετατόπιση σε px (ασφαλής για overscan) */
+  --wave-bob-y: 10px;      /* κάθετο “βούτηγμα” */
+  --wave-duration: 5s;    /* διάρκεια loop */
+
+  /* Overscan: πόσο πιο φαρδύ από το 100% είναι το SVG ώστε να μη φανούν άκρα */
+  --wave-overscan: 30%;    /* αύξησέ το αν ποτέ ξαναδεις άκρα (π.χ. 40%) */
 }
 
-/* βεβαιώσου ότι το main είναι πάνω από το hero */
-.hero + main{ position:relative; z-index:1 }
+/* main κάτω από το fixed hero */
+.hero + main{
+  margin-top: var(--hero-h);
+  position: relative;
+  z-index: 2;
+}
+main{ background: var(--sand) }
 
-/* ΓΕΜΑΤΟ κύμα που “σκεπάζει” το hero */
-.hero + main::before{
-  content:"";
-  position:absolute;
-  top: calc(-1 * var(--wave-fill-h) + 1px);
-  left:50%;
-  transform: translateX(-50%);
-
-  width: 100%;                   /* πιο φαρδύ από την οθόνη → κανένα κόψιμο στα άκρα */
-  height: var(--wave-fill-h);
+/* Κορυφή του main */
+.wave-sep{
+  position: relative;
+  height: calc(var(--wave-h) + var(--wave-overlap));
+  margin-top: calc(-1 * var(--wave-h) - var(--wave-overlap));
+  background: transparent;
   pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
 
-  /* ίδιο φόντο με το main για το τέλειο blend */
-  background: inherit;
+/* SVG μένει σταθερό με overscan (δεν μετακινείται το ίδιο ποτέ) */
+.wave-sep svg{
+  position: absolute;
+  top: -1px; /* 1px overlap για να μη φανεί γραμμή */
+  left: calc(-1 * var(--wave-overscan) / 2);
+  width: calc(100% + var(--wave-overscan));
+  height: calc(100% + 2px);
+  display: block;
+}
 
-  /* Μάσκα SVG: κυματιστή κορυφή + γεμισμένο προς τα κάτω */
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 60 C150 20 300 100 450 60 S750 20 900 60 S1050 100 1200 60 L1200 120 L0 120 Z'/%3E%3C/svg%3E");
-          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 60 C150 20 300 100 450 60 S750 20 900 60 S1050 100 1200 60 L1200 120 L0 120 Z'/%3E%3C/svg%3E");
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-position: 50% 0;
-          mask-position: 50% 0;
-  -webkit-mask-size: 140vw 100%;
-          mask-size: 140vw 100%;
+.wave-sep .wave-slide{
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  animation: wave-horiz var(--wave-duration) ease-in-out infinite;
 }
 
 
 
-/* κίνηση της μάσκας αριστερά-δεξιά */
-@keyframes wave-slide {
-  0%   { -webkit-mask-position: 45% 0; mask-position: 45% 0; }
-  50%  { -webkit-mask-position: 55% 0; mask-position: 55% 0; }
-  100% { -webkit-mask-position: 45% 0; mask-position: 45% 0; }
+/* Χρώμα κύματος */
+.wave-path{ fill: var(--sea) }
+
+@keyframes wave-horiz{
+  0%   { transform: translateX(calc(-1 * var(--wave-shift-px))) } /* αριστερά */
+  50%  { transform: translateX(var(--wave-shift-px)) }            /* δεξιά */
+  100% { transform: translateX(calc(-1 * var(--wave-shift-px))) } /* αριστερά */
 }
 
-/* ενεργοποίηση */
-.hero + main::before{
-  animation: wave-slide 14s ease-in-out infinite;
+
+
+
+@media (prefers-reduced-motion: reduce){
+  .wave-sep .wave-slide{ animation: none }
 }
+
 
 
 
