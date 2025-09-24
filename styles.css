@@ -84,7 +84,10 @@ body::before{
   border:1px solid rgba(158,193,207,.35);
   color:var(--ink)
 }
-.btn.btn-primary:hover{ background:rgba(158,193,207,.30) }
+.btn.btn-primary:hover{
+  background: color-mix(in oklab, var(--sea), transparent 70%);
+  background: rgb(from var(--sea) r g b / .30);   /* when is supported otherwise goes up to fallback */
+}
 
 
 /* ========== Mobile menu (απλό & μικρό) ========== */
@@ -248,7 +251,6 @@ main{ background: var(--sand) }
 }
 
 
-
 /* Χρώμα κύματος */
 .wave-path{ fill: var(--sea) }
 
@@ -259,16 +261,9 @@ main{ background: var(--sand) }
 }
 
 
-
-
 @media (prefers-reduced-motion: reduce){
   .wave-sep .wave-slide{ animation: none }
 }
-
-
-
-
-
 
 
 /* ==================== BUTTOMS ==================== */
@@ -295,7 +290,9 @@ main{ background: var(--sand) }
 
 /* Ghost = διάφανο με περίγραμμα στο wheat */
 .btn.btn-ghost{
-  background:rgba(158,193,207,.30);
+  background: color-mix(in oklab, var(--wheat), transparent 70%);
+  background: rgb(from var(--wheat) r g b / .30);   /* when is supported otherwise goes up to fallback */
+  
   border-color: color-mix(in oklab, var(--wheat), black 12%);
   color: var(--wheat);
 }
@@ -330,6 +327,7 @@ main{ background: var(--sand) }
 .card .img{ aspect-ratio: 16/10; background:#dfe8eb; overflow:hidden }
 .card .img img{ width:100%; height:100%; object-fit:cover; display:block }
 .card .body{ padding:16px }
+/* Maybe delete TODO */
 .card .btn.btn-ghost{
   background: transparent;
 }
