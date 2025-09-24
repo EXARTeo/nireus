@@ -3,11 +3,16 @@
 /* --------- Design tokens --------- */
 :root{
   --sand:#efebe5;
+  /*--wheat:#dcc9a3;    /* πιο “μπισκοτένιο”, πιο καθαρό δίπλα στο μπλε */
   --wheat:#d9cea0;
-  --sea:#9ec1cf;
   --ink:#1c1f24;
   --ink-soft:#2b3139;
   --white:#ffffff;
+
+  /*--sea:#446e83;  /* μπλε φωτη */
+  /*--sea: #d0e2ed; /* baby blue*/ 
+  /* --sea:#26415c; /* DAAARK */
+  --sea:#dde9ee;
 
   /* Header height */
   --header-h: 64px;
@@ -121,13 +126,17 @@ body::before{
   display:grid;
   grid-template-columns: 1.2fr .8fr;
   gap:40px;
-  padding:72px 0 64px; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
+  padding:calc(var(--header-h) + 16px) 0 64px; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
 }
 @media (max-width: 960px){ 
   .hero .wrap{ 
-    padding:56px 0 64px; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
+    padding:calc(var(--header-h) + 16px) 0 64px; /*Δημιουργει κενο αναμεσα στο main Και το hero TODO*/ 
     grid-template-columns:1fr
   } 
+}
+/* TODO MAYBE DELETE */
+@media (max-width: 520px){
+  :root{ --wave-overlap: 32px; }
 }
 
 
@@ -179,7 +188,7 @@ h1{ font-size: clamp(28px, 4vw, 46px); margin:.2em 0 .4em }
   margin-top: var(--hero-h);
   position: relative;
   z-index: 1;
-  background: var(--sea); /* TODO */
+  background: var(--sea);            /* TODO  main only for index.html*/
   padding-top: 1px;                  /* μόνο για να σπάσει το collapsing */
 
 }
@@ -341,6 +350,9 @@ main{ background: var(--sand) }
 .tile img{ width:100%; height:100%; object-fit:cover; display:block }
 
 .footer{
+  position: relative;
+  background: var(--sand);
+  z-index: 2;
   padding:30px 0;
   border-top:1px solid color-mix(in oklab, var(--wheat), black 10%);
   color:var(--ink-soft); font-size:14px;
