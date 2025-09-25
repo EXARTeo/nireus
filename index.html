@@ -11,147 +11,240 @@
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container nav" id="nav">
-    <a href="index.html" class="brand">
-      <img src="assets/logo.svg" alt="Nireus logo" class="brand-logo"/>
-      <div class="brand-title">Nireus • Σύβοτα</div>
-    </a>
-    <button class="mobile-toggle" aria-label="Μενού">☰</button>
-    <ul>
-      <li><a href="boats.html">Ενοικίαση</a></li>
-      <li><a href="fleet.html">Στόλος</a></li>
-      <li><a href="pricing.html">Τιμές</a></li>
-      <li><a href="routes.html">Διαδρομές</a></li>
-      <li><a href="gallery.html">Φωτογραφίες</a></li>
-      <li><a href="about.html">Σχετικά</a></li>
-      <li><a href="faq.html">Συχνές Ερωτήσεις</a></li>
-      <li><a href="contact.html">Επικοινωνία</a></li>
-    </ul>
-  </div>
-</header>
+  <header class="site-header">
+    <div class="container nav" id="nav">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.svg" alt="Nireus logo" class="brand-logo"/>
+        <div class="brand-title">Nireus • Σύβοτα</div>
+      </a>
+      <button class="mobile-toggle" aria-label="Μενού">☰</button>
+      <ul>
+        <li><a href="boats.html">Ενοικίαση</a></li>
+        <li><a href="fleet.html">Στόλος</a></li>
+        <li><a href="routes.html">Διαδρομές</a></li>
+        <li><a href="gallery.html">Φωτογραφίες</a></li>
+        <li><a href="about.html">Σχετικά</a></li>
+        <li><a href="faq.html">Συχνές Ερωτήσεις</a></li>
+        <li><a href="contact.html">Επικοινωνία</a></li>
+      </ul>
+    </div>
+  </header>
 
 
-<section class="hero hero-with-video">
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video class="hero-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          poster="img/hero_poster.jpg">
-      <!-- Βάλε εδώ το δικό σου αρχείο όταν το έχεις -->
-      <!-- προσωρινά demo αρχεία (CC0) -->
-      <source src="video/NireysBasic.webm" type="video/webm"/>
-      <source src="video/NireysBasic.mp4" type="video/mp4"/>
-      Ο browser σας δεν υποστηρίζει video.
-    </video>
-    <div class="hero-overlay"></div>
-  </div>
+  <section class="hero hero-with-video">
+    <div class="hero-video-wrap" aria-hidden="true">
+      <video class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="img/hero_poster.jpg">
+        <!-- TODO VIDEO -->
+        <source src="video/NireysBasic.webm" type="video/webm"/>
+        <source src="video/NireysBasic.mp4" type="video/mp4"/>
+        Ο browser σας δεν υποστηρίζει video.
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
 
-  <div class="container wrap hero-content">
-    <div>
-      <div class="kicker">Σύβοτα • Θεσπρωτία</div>
-
-      <h1>Νοικιάστε βάρκα και ζήστε τις κρυφές ακτές των Συβότων</h1>
-      <p class="lead">
-        Χωρίς δίπλωμα, με πλήρη εξοπλισμό και υποστήριξη. Η Nireus σας οδηγεί σε
-        ησυχαστήρια με τιρκουάζ νερά, σπηλιές και μικρά νησιά.
-      </p>
-      <div class="cta">
-        <a href="boats.html" class="btn btn-primary">Κράτηση / Διαθεσιμότητα</a>
-        <a href="routes.html" class="btn btn-ghost">Διαδρομές &amp; Χάρτης</a>
+    <div class="container wrap hero-content">
+      <div>
+        <div class="kicker">Σύβοτα • Θεσπρωτία</div>
+        <h1>Ενοικιάσεις Σκαφών &amp; Ιδιωτικές Κρουαζιέρες</h1>
+        <p class="lead">
+          Χωρίς δίπλωμα, με πλήρη εξοπλισμό και υποστήριξη. Η Nireus σας οδηγεί σε
+          ησυχαστήρια με τιρκουάζ νερά, σπηλιές και μικρά νησιά.
+        </p>
+        <div class="cta">
+          <a href="boats.html" class="btn btn-primary">Κράτηση / Διαθεσιμότητα</a>
+          <a href="routes.html" class="btn btn-ghost">Διαδρομές &amp; Χάρτης</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<main>
-  <div class="wave-sep" aria-hidden="true">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" role="img" aria-label="Wave with boat">
-      <g class="wave-slide">
-        <!-- ΚΥΜΑ (ίδιο path με πριν, γεμίζει προς τα κάτω) -->
-        <path class="wave-path"
-              d="M0 60 C150 20 300 100 450 60 S750 20 900 60 S1050 100 1200 60 L1200 120 L0 120 Z"/>
+  <main>
+    <!-- Κυμα με βαρκουλα, ΤΕΛΕΙΟ?!! -->
+    <div class="wave-sep" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" role="img" aria-label="Wave with boat">
+        <g class="wave-slide">
+          <!-- ΚΥΜΑ (ίδιο path με πριν, γεμίζει προς τα κάτω) -->
+          <path class="wave-path"
+                d="M0 60 C150 20 300 100 450 60 S750 20 900 60 S1050 100 1200 60 L1200 120 L0 120 Z"/>
 
-        <!-- ΒΑΡΚΟΥΛΑ στο κέντρο (λευκή, διακριτική σκιά) -->
-        <g id="boat" transform="translate(600,44)">
-          <!-- σκιά -->
-          <ellipse cx="0" cy="22" rx="24" ry="4" fill="#000000" opacity="0.10"/>
-          <!-- καρίνα / σκάφος -->
-          <path d="M-28 18 C -18 28, 18 28, 28 18 L -28 18 Z" fill="#FFFFFF"/>
-          <!-- καμπίνα / πρόσοψη -->
-          <path d="M-2 6 L 12 6 L 8 14 L -2 14 Z" fill="#FFFFFF"/>
-          <!-- μικρή λεπτομέρεια παρμπρίζ -->
-          <path d="M10 6 L 8 14" stroke="#000000" stroke-opacity="0.15" stroke-width="1"/>
-          <!-- περίγραμμα πολύ διακριτικό -->
-          <path d="M-28 18 C -18 28, 18 28, 28 18" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+          <!-- ΒΑΡΚΟΥΛΑ στο κέντρο (λευκή, διακριτική σκιά) -->
+          <g id="boat" transform="translate(600,44)">
+            <!-- σκιά -->
+            <ellipse cx="0" cy="22" rx="24" ry="4" fill="#000000" opacity="0.10"/>
+            <!-- καρίνα / σκάφος -->
+            <path d="M-28 18 C -18 28, 18 28, 28 18 L -28 18 Z" fill="#FFFFFF"/>
+            <!-- καμπίνα / πρόσοψη -->
+            <path d="M-2 6 L 12 6 L 8 14 L -2 14 Z" fill="#FFFFFF"/>
+            <!-- μικρή λεπτομέρεια παρμπρίζ -->
+            <path d="M10 6 L 8 14" stroke="#000000" stroke-opacity="0.15" stroke-width="1"/>
+            <!-- περίγραμμα πολύ διακριτικό -->
+            <path d="M-28 18 C -18 28, 18 28, 28 18" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+          </g>
         </g>
-      </g>
-    </svg>
-    
-  </div>
+      </svg>
+    </div>
 
 
-  <section class="section">
+    <section id="services" class="section" itemscope itemtype="https://schema.org/ItemList" aria-labelledby="services-title">
+      <div class="container">
+        <h2 id="services-title">Υπηρεσίες</h2>
+
+        <meta itemprop="numberOfItems" content="4" />
+        <div class="cards">
+
+          <!-- 1) Χωρίς δίπλωμα -->
+          <article class="card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Service">
+            <img class="bg" src="img/Solo_TEST.jpg" alt="" loading="lazy" decoding="async">
+            <div class="body">
+              <h3 itemprop="name" >Ενοικιάσεις σκαφών χωρίς δίπλωμα</h3>
+              <p class="muted" itemprop="description">Εκπαίδευση 10’ &amp σαφείς οδηγίες πλεύσης (έως 30hp).</p>
+            </div>
+            <div class="actions">
+              <a href="boats.html" class="btn btn-ghost" aria-label="Μετάβαση: Ενοικιάσεις χωρίς δίπλωμα">Διαθεσιμότητα</a>
+            </div>
+            <meta itemprop="alternateName" content="License-free boat rentals"/>
+          </article>
+
+          <!-- 2) Ταχύπλοα με δίπλωμα -->
+          <article class="card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Service">
+            <img class="bg" src="img/skipper_TEST.jpg" alt="" loading="lazy" decoding="async">
+            <div class="body">
+              <h3 itemprop="name">Ενοικιάσεις ταχύπλοων με δίπλωμα</h3>
+              <p class="muted" itemprop="description">Ισχυρά σκάφη (πάνω από 30hp).</p>
+            </div>
+            <div class="actions">
+              <a href="fleet.html#speedboats" class="btn btn-ghost" aria-label="Μετάβαση: Ταχύπλοα με δίπλωμα">Δείτε στόλο</a>
+            </div>
+            <meta itemprop="alternateName" content="Licensed speedboat rentals"/>
+          </article>
+
+          <!-- 3) Ιδιωτικές κρουαζιέρες -->
+          <article class="card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Service">
+            <img class="bg" src="img/boat_TEST.jpg" alt="" loading="lazy" decoding="async">
+            <div class="body">
+              <h3 itemprop="name">Ιδιωτικές κρουαζιέρες με skipper</h3>
+              <p class="muted" itemprop="description">Ξενάγηση &amp κρυφά σημεία στα Σύβοτα.</p>
+            </div>
+            <div class="actions">
+              <a href="fleet.html#private-cruises" class="btn btn-ghost" aria-label="Μετάβαση: Ιδιωτικές κρουαζιέρες">Επιλογές</a>
+            </div>
+            <meta itemprop="alternateName" content="Private cruises"/>
+          </article>
+
+          <!-- 4) Sunset tours -->
+          <article class="card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Service">
+            <img class="bg" src="img/boat_TEST.jpg" alt="" loading="lazy" decoding="async">
+            <div class="body">
+              <h3 itemprop="name">Sunset Tours</h3>
+              <p class="muted" itemprop="description">Χρυσή ώρα &amp στάσεις για φωτογραφίες.</p>
+            </div>
+            <div class="actions">
+              <a href="routes.html#sunset" class="btn btn-ghost" aria-label="Μετάβαση: Sunset Tours">Διαδρομή</a>
+            </div>
+            <meta itemprop="alternateName" content="Ηλιοβασίλεμα στα Σύβοτα"/>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section id="why" class="section" aria-labelledby="why-title">
+      <div class="container">
+        <h2 id="why-title">Γιατί Nireus</h2>
+        <p class="sub">Από το <time datetime="1993">1993</time> στα Σύβοτα — εμπειρία, ασφάλεια, καθοδήγηση.</p>
+
+        <div class="grid-two">
+          <div class="feature">
+            <i aria-hidden="true">🏆</i>
+            <div>
+              <h3>Εμπειρία από το 1993</h3>
+              <p class="muted">Τοπική γνώση & σταθερή φροντίδα.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <i aria-hidden="true">📚</i>
+            <div>
+              <h3>Εκπαίδευση 10’</h3>
+              <p class="muted">Σαφείς οδηγίες πριν την αναχώρηση.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <i aria-hidden="true">🛡️</i>
+            <div>
+              <h3>Ασφάλεια</h3>
+              <p class="muted">Εξοπλισμός, σωστικά & GPS tracker.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <i aria-hidden="true">📍</i>
+            <div>
+              <h3>Έξυπνες διαδρομές</h3>
+              <p class="muted">Tips για κολπίσκους & στάσεις.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+      <section class="section">
+        <div class="container">
+          <h2>Δημοφιλείς Επιλογές</h2>
+          <div class="card-grid">
+            <article class="card">
+              <div class="img"><img src="img/Solo_TEST.jpg" alt="Βάρκα 30hp"/></div>
+              <div class="body">
+                <h3>Nireus 30hp — Χωρίς δίπλωμα</h3>
+                <p>Ιδανικό για ζευγάρια & οικογένειες. Σκίαστρο, ψυγείο, σκάλα θαλάσσης.</p>
+                <a class="btn btn-ghost" href="boats.html">Διαθεσιμότητα →</a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="img"><img src="img/skipper_TEST.jpg" alt="RIB 150hp"/></div>
+              <div class="body">
+                <h3>RIB 150hp — Με χειριστή ή δίπλωμα</h3>
+                <p>Για μεγάλες αποστάσεις & ξεχωριστές εξορμήσεις στα Διαπόντια.</p>
+                <a class="btn btn-ghost" href="fleet.html">Δείτε στόλο →</a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="img"><img src="img/boat_TEST.jpg" alt="Παραλία Συβότων"/></div>
+              <div class="body">
+                <h3>Μικρά νησιά & σπηλιές</h3>
+                <p>Περάστε από Μπέλλα Βράκα, Μουρτεμένο, Πισίνα, Μαρτινάκι κ.ά.</p>
+                <a class="btn btn-ghost" href="routes.html">Διαδρομές →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  <footer class="footer">
     <div class="container">
-      <h2>Γιατί Nireus;</h2>
-      <p class="sub">Ξεκινάτε εύκολα, ταξιδεύετε με σιγουριά, επιστρέφετε με αναμνήσεις.</p>
-      <div class="grid-two">
-        <div class="feature"><i>🛟</i><div><strong>Εκπαίδευση 10’</strong><br/>Γρήγορη ενημέρωση πριν την αναχώρηση — όλα όσα χρειάζεστε.</div></div>
-        <div class="feature"><i>📍</i><div><strong>Προτεινόμενες Διαδρομές</strong><br/>Χάρτης & tips για τα καλύτερα σημεία.</div></div>
-        <div class="feature"><i>⚓</i><div><strong>Ασφάλεια</strong><br/>Σωστικά, GPS tracker, 24/7 υποστήριξη σε εμβέλεια.</div></div>
-        <div class="feature"><i>💶</i><div><strong>Διαφανείς Τιμές</strong><br/>Χωρίς κρυφές χρεώσεις. Καύσιμα με μέτρηση.</div></div>
+      <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+        <div>© 2025 Nireus Boat Rentals — Σύβοτα</div>
+      </div>
+      <div class="small" style="margin-top:8px">
+        * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
       </div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2>Δημοφιλείς Επιλογές</h2>
-      <div class="card-grid">
-        <article class="card">
-          <div class="img"><img src="img/boat_TEST.jpg" alt="Βάρκα 30hp"/></div>
-          <div class="body">
-            <h3>Nireus 30hp — Χωρίς δίπλωμα</h3>
-            <p>Ιδανικό για ζευγάρια & οικογένειες. Σκίαστρο, ψυγείο, σκάλα θαλάσσης.</p>
-            <a class="btn btn-ghost" href="boats.html">Διαθεσιμότητα →</a>
-          </div>
-        </article>
-        <article class="card">
-          <div class="img"><img src="img/boat_TEST.jpg" alt="RIB 150hp"/></div>
-          <div class="body">
-            <h3>RIB 150hp — Με χειριστή ή δίπλωμα</h3>
-            <p>Για μεγάλες αποστάσεις & ξεχωριστές εξορμήσεις στα Διαπόντια.</p>
-            <a class="btn btn-ghost" href="fleet.html">Δείτε στόλο →</a>
-          </div>
-        </article>
-        <article class="card">
-          <div class="img"><img src="img/boat_TEST.jpg" alt="Παραλία Συβότων"/></div>
-          <div class="body">
-            <h3>Μικρά νησιά & σπηλιές</h3>
-            <p>Περάστε από Μπέλλα Βράκα, Μουρτεμένο, Πισίνα, Μαρτινάκι κ.ά.</p>
-            <a class="btn btn-ghost" href="routes.html">Διαδρομές →</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
-      <div>© 2025 Nireus Boat Rentals — Σύβοτα</div>
-    </div>
-    <div class="small" style="margin-top:8px">
-      * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <script src="scripts.js"></script>
+
 </body>
 </html>

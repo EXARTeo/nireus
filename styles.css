@@ -316,9 +316,21 @@ main{ background: var(--sand) }
 }
 /* ============================================================== */
 
-.card-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px }
-@media (max-width: 900px){ .card-grid{ grid-template-columns: repeat(2,1fr) } }
-@media (max-width: 560px){ .card-grid{ grid-template-columns: 1fr } }
+.card-grid{ 
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:16px;
+}
+@media (max-width: 900px){
+  .card-grid{ 
+    grid-template-columns: repeat(2,1fr)
+  }
+}
+@media (max-width: 560px){
+  .card-grid{ 
+    grid-template-columns: 1fr 
+  }
+}
 
 .card{
   background:var(--white);
@@ -326,9 +338,19 @@ main{ background: var(--sand) }
   border-radius:18px; overflow:hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,.04);
 }
-.card .img{ aspect-ratio: 16/10; background:#dfe8eb; overflow:hidden }
-.card .img img{ width:100%; height:100%; object-fit:cover; display:block }
+.card .img{ 
+  aspect-ratio: 16/10;
+  background:#dfe8eb; 
+  overflow:hidden 
+}
+.card .img img{ 
+  width:100%;
+  height:100%;
+  object-fit:cover; 
+  display:block 
+}
 .card .body{ padding:16px }
+
 /* Maybe delete TODO */
 .card .btn.btn-ghost{
   background: transparent;
@@ -418,3 +440,86 @@ hr.sep{
 
 .breadcrumbs{ font-size:13px; color:var(--ink-soft); margin-bottom:12px }
 .breadcrumbs a{ color:inherit }
+
+
+
+/* ========================= scoped στο #services ========================= */
+#services h2{ text-align:center; }
+#services .cards{ display:grid; gap:16px; grid-template-columns:repeat(4, minmax(0,1fr)); }
+@media (max-width:1024px){ #services .cards{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width:560px){  #services .cards{ grid-template-columns:1fr } }
+
+/* Κάρτα ως “σκηνή” */
+#services .card{
+  position:relative; min-height:300px; border-radius:14px; overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  isolation:isolate;
+}
+
+/* Εικόνα background */
+#services .card .bg{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  z-index:0;
+}
+
+/* Διπλό overlay: λίγο σκοτάδι ΚΑΙ επάνω ΚΑΙ κάτω για αναγνωσιμότητα */
+#services .card::before, 
+#services .card::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+}
+#services .card::before{
+  /* κάτω → για περιγραφή/κουμπί */
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.30) 35%,
+    rgba(0,0,0,.10) 60%,
+    rgba(0,0,0,0) 80%
+  );
+}
+#services .card::after{
+  /* πάνω → για τίτλο */
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.45) 0%,
+    rgba(0,0,0,.18) 35%,
+    rgba(0,0,0,0) 60%
+  );
+}
+
+/* Το wrapper του κειμένου δεν είναι πλέον positioned */
+#services .body{
+  position:static; color:#fff;
+}
+
+/* Τίτλος: πάνω-αριστερά */
+#services .body h3{
+  position:absolute; top:16px; left:16px; right:16px; z-index:2;
+  margin:0; max-width:28ch; line-height:1.22;
+  text-shadow:0 1px 2px rgba(0,0,0,.28);
+  text-wrap:balance; word-break:normal; hyphens:manual;
+}
+
+/* Περιγραφή: κάτω-αριστερά, ακριβώς πάνω από το κουμπί */
+#services .body p{
+  position:absolute; left:16px; right:16px; bottom:56px; z-index:2;
+  margin:0; max-width:32ch; line-height:1.35; opacity:.96;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+
+/* Κουμπί: κάτω-αριστερά */
+#services .actions{
+  position:absolute; left:16px; bottom:16px; z-index:2;
+}
+#services .btn.btn-ghost{
+  padding:6px 10px; font-size:14px; line-height:1; border-radius:10px;
+  backdrop-filter:saturate(120%) blur(2px);
+  background:rgba(20,20,20,.25);
+  color:#fff; border-color:rgba(255,255,255,.34);
+}
+#services .btn.btn-ghost:hover{
+  background:rgba(255,255,255,.18);
+  border-color:rgba(255,255,255,.45);
+  transform:none;
+}
