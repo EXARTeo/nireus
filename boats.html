@@ -11,95 +11,124 @@
 </head>
 <body>
   
-<header class="site-header">
-  <div class="container nav" id="nav">
-    <a href="index.html" class="brand">
-      <img src="assets/logo.svg" alt="Nireys logo" class="brand-logo"/>
-      <div class="brand-title">Nireys • Σύβοτα</div>
-    </a>
-    <button class="mobile-toggle" aria-label="Μενού">☰</button>
-    <ul>
-      <li><a href="boats.html">Ενοικίαση</a></li>
-      <li><a href="fleet.html">Στόλος</a></li>
-      <li><a href="routes.html">Διαδρομές</a></li>
-      <li><a href="gallery.html">Φωτογραφίες</a></li>
-      <li><a href="about.html">Σχετικά</a></li>
-      <li><a href="faq.html">Συχνές Ερωτήσεις</a></li>
-      <li><a href="contact.html">Επικοινωνία</a></li>
-    </ul>
-  </div>
-</header>
+  <header class="site-header">
+    <div class="container nav" id="nav">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.svg" alt="Nireys logo" class="brand-logo"/>
+        <div class="brand-title">Nireys • Σύβοτα</div>
+      </a>
+      <button class="mobile-toggle" aria-label="Μενού">☰</button>
+      <ul>
+        <li><a href="boats.html">Ενοικίαση</a></li>
+        <li><a href="fleet.html">Στόλος</a></li>
+        <li><a href="routes.html">Διαδρομές</a></li>
+        <li><a href="gallery.html">Φωτογραφίες</a></li>
+        <li><a href="about.html">Σχετικά</a></li>
+        <li><a href="faq.html">Συχνές Ερωτήσεις</a></li>
+        <li><a href="contact.html">Επικοινωνία</a></li>
+      </ul>
+    </div>
+  </header>
+
+  
+  <section class="hero hero-photo" style="--hero-image: url('img/Solo_TEST.jpg')">
+    <div class="container wrap hero-content">
+      <div>
+        <div class="kicker">Σύβοτα • Θεσπρωτία</div>
+        <h1>Έτοιμοι να εξερευνήσετε τα κρυφά Ιόνια νερά;</h1>
+        <p class="lead">Κλείστε εύκολα — ταξιδεύετε με σιγουριά, επιστρέφετε με αναμνήσεις.</p>
+        <div class="cta">
+          <a href="#booking" class="btn btn-primary">Ζήτηση Διαθεσιμότητας</a>
+          <a href="fleet.html" class="btn btn-ghost">Ρίξτε μια ματιά στον Στόλο</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <main>
-    <div class="container">
-      <div class='breadcrumbs'>Αρχική · Ενοικίαση</div>
-    </div>
-    
-<section class="section">
-  <div class="container">
-    <h2>Ενοικίαση Βάρκας</h2>
-    <p class="sub">Κλείστε ημερομηνία, επιλέξτε σκάφος και ξεκινήστε!</p>
-    <div class="grid-two">
-      <div>
-        <form>
-          <div class="grid-two">
-            <div><label>Ημερομηνία</label><br/><input type="date"/></div>
-            <div><label>Ώρα αναχώρησης</label><br/><input type="time" value="10:00"/></div>
-          </div>
-          <div class="grid-two">
-            <div><label>Τύπος σκάφους</label><br/>
-              <select>
-                <option>Nireys 30hp (χωρίς δίπλωμα)</option>
-                <option>Poseidon 40hp</option>
-                <option>RIB 150hp (με δίπλωμα ή skipper)</option>
-              </select>
-            </div>
-            <div><label>Άτομα</label><br/><input type="number" min="1" max="7" value="4"/></div>
-          </div>
-          <label>Μήνυμα</label>
-          <textarea rows="4" placeholder="Πείτε μας τι χρειάζεστε..."></textarea>
-          <div class="cta">
-            <button type="button" class="btn btn-primary" onclick="whatsapp()">Ζήτηση Διαθεσιμότητας (WhatsApp)</button>
-            <a class="btn btn-ghost" href="tel:+306900000000">Τηλεφωνικά</a>
-          </div>
-          <p class="small">Με την αποστολή αιτήματος αποδέχεστε τους <a href="terms.html">όρους</a>.</p>
-        </form>
-      </div>
-      <div class="notice">
-        <strong>Χωρίς δίπλωμα:</strong> Σκάφη έως 30hp δεν απαιτούν δίπλωμα. Θα λάβετε σύντομη εκπαίδευση, χάρτη και οδηγίες αγκυροβόλησης.
-        <hr class="sep"/>
-        <div class="feature"><i>⛽</i><div><strong>Καύσιμα:</strong> Πληρώνονται στο τέλος με βάση τη μέτρηση.</div></div>
-        <div class="feature"><i>🕘</i><div><strong>Ώρες:</strong> 10:00—18:00 (ευελιξία κατόπιν συνεννόησης).</div></div>
-        <div class="feature"><i>👶</i><div><strong>Οικογένειες:</strong> Παρέχουμε παιδικά σωσίβια.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <h3>Πακέτα Ημέρας</h3>
-    <table class="table">
-      <tr><th>Σκάφος</th><th>Άτομα</th><th>Ώρες</th><th>Τιμή από*</th></tr>
-      <tr><td>Nireys 30hp</td><td>5</td><td>10:00–18:00</td><td>€90</td></tr>
-      <tr><td>Poseidon 40hp</td><td>6</td><td>10:00–18:00</td><td>€120</td></tr>
-      <tr><td>RIB 150hp</td><td>8</td><td>10:00–18:00</td><td>€350</td></tr>
-    </table>
-    <p class="small">* Τιμές ενδεικτικές, ανάλογα με περίοδο και διαθεσιμότητα. Καύσιμα δεν περιλαμβάνονται.</p>
-  </div>
-</section>
 
-  </main>
-  
-<footer class="footer">
-  <div class="container">
-    <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
-      <div>© 2025 Nireys Boat Rentals — Σύβοτα</div>
+  <!-- BOOKING FORM -->
+  <section id="booking" class="section booking-section">
+    <div class="container container--narrow">
+      <form id="bookingForm" class="glass-card" onsubmit="return false" novalidate>
+        <!-- Υπηρεσία -->
+        <div class="field">
+          <label>Υπηρεσία</label>
+          <div class="segmented" role="tablist" aria-label="Επιλέξτε υπηρεσία">
+            <input type="radio" name="service" id="svc-boat" value="Boat Rental" checked>
+            <label for="svc-boat" role="tab">Boat Rental</label>
+
+            <input type="radio" name="service" id="svc-speed" value="Speed Boat Rentals (License Required)">
+            <label for="svc-speed" role="tab">Speed Boat Rentals (License Required)</label>
+
+            <input type="radio" name="service" id="svc-cruise" value="Private Cruise with Skipper">
+            <label for="svc-cruise" role="tab">Private Cruise with Skipper</label>
+          </div>
+          <div class="meta-row">
+            <span class="meta-pill" id="serviceHint">Έως 30hp, χωρίς δίπλωμα.</span>
+          </div>
+        </div>
+
+        <!-- Ημερομηνία / Ώρα -->
+        <div class="grid-two">
+          <div class="field">
+            <label for="date">Ημερομηνία</label>
+            <input id="date" class="control" type="date" required>
+          </div>
+          <div class="field">
+            <label for="time">Ώρα αναχώρησης</label>
+            <input id="time" class="control" type="time" value="10:00" required>
+          </div>
+        </div>
+
+        <!-- Άτομα / Σκάφος -->
+        <div class="grid-two">
+          <div class="field">
+            <label for="people">Άτομα <span class="hint" id="peopleHint"></span></label>
+            <input id="people" class="control" type="number" min="1" max="7" value="4" required>
+          </div>
+          <div class="field">
+            <label for="boat">Σκάφος</label>
+            <select id="boat" class="control" required></select>
+          </div>
+        </div>
+
+        <!-- Μήνυμα -->
+        <div class="field">
+          <label for="msg">Μήνυμα</label>
+          <textarea id="msg" class="control" rows="4" placeholder="Πείτε μας τι χρειάζεστε..."></textarea>
+        </div>
+
+        <!-- Availability note -->
+        <div class="availability" id="availabilityNote" aria-live="polite"></div>
+
+        <!-- CTAs -->
+        <div class="cta">
+          <button type="button" class="btn btn-primary" id="whatsBtn">Ζήτηση Διαθεσιμότητας (WhatsApp)</button>
+          <a class="btn btn-ghost" href="tel:+306900000000">Τηλεφωνικά</a>
+        </div>
+
+        <p class="small terms-note">
+          Με την αποστολή αιτήματος αποδέχεστε τους <a href="terms.html">όρους</a>.
+        </p>
+      </form>
     </div>
-    <div class="small" style="margin-top:8px">
-      * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
+  </section>
+</main>
+
+
+    
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+        <div>© 2025 Nireys Boat Rentals — Σύβοτα</div>
+      </div>
+      <div class="small" style="margin-top:8px">
+        * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script src="scripts.js"></script>
 </body>
