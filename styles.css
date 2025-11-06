@@ -506,48 +506,6 @@ hr.sep{
 #services .cards{ display:grid; gap:16px; grid-template-columns:repeat(4, minmax(0,1fr)); }
 @media (max-width:1024px){ #services .cards{ grid-template-columns:repeat(2,1fr) } }
 @media (max-width:560px){
-
-
-  /* θα το σβησω */
-/* Τα cards πρέπει να είναι relative για να δουλέψει το overlay */
-#services .card{
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px; /* αν θες πιο μαλακές άκρες */
-  overflow-x: auto;
-  overflow-y: hidden;   /* <-- αποτρέπει την κάθετη μπάρα */
-}
-
-/* Λευκό “πέπλο” με ελαφρύ blur σε ΟΛΕΣ τις κάρτες */
-#services .card::after{
-  content:"";
-  position:absolute; inset:0;
-  pointer-events: none;
-  background: rgba(255,255,255,.25);     /* διακριτικό άσπρο πέπλο */
-  backdrop-filter: blur(3px);            /* θολώνει ελαφρά την εικόνα */
-  -webkit-backdrop-filter: blur(3px);
-  opacity: 1;
-  transition: opacity .25s ease, backdrop-filter .25s ease;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
-
-}
-
-/* Η κεντρική / ενεργή κάρτα: καθαρή εικόνα, χωρίς πέπλο */
-#services .card.is-active::after{
-  opacity: 0;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-}
-
-/* Optional: ελαφρύ “ανασήκωμα” της ενεργής κάρτας */
-#services .card.is-active{
-  transform: translateZ(0) scale(1.01);
-  transition: transform .25s ease;
-}
-
-  /* θα το σβησω */
-
-
   #services .cards{
     display:flex;
     gap:12px;

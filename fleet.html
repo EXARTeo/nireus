@@ -4,70 +4,223 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Στόλος · Nireus Boat Rentals — Σύβοτα</title>
-  <meta name="description" content="Nireus Boat Rentals — Ενοικίαση βάρκας στα Σύβοτα."/>
+  <meta name="description" content="Σκάφη Nireus — Ταχύπλοα και σκάφη χωρίς δίπλωμα στα Σύβοτα."/>
   <link rel="icon" href="assets/logo.svg"/>
   <link rel="stylesheet" href="styles.css"/>
-  <style> .nav a[href$="fleet.html"]{background: color-mix(in oklab, var(--sea), white 70%)} </style>
+  <style>
+    /* Μικρά βοηθητικά για το flicker/tabs */
+    .hidden{ display:none !important }
+    .tabs{ margin-bottom:12px }
+    .tabs .segmented{ grid-template-columns: repeat(2, 1fr) }
+    
+    .features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin-top:10px;padding:0}
+    .features li{list-style:none;display:flex;align-items:flex-start;gap:.5rem;padding:0;font-size:14px;line-height:1.35;color:var(--ink)}
+    .features li::before{content:'';flex:0 0 6px;width:6px;height:6px;border-radius:50%;background:var(--sand);margin-top:.35em}
+  </style>
 </head>
 <body>
-  
-<header class="site-header">
-  <div class="container nav" id="nav">
-    <a href="index.html" class="brand">
-      <img src="assets/logo.svg" alt="Nireus logo" class="brand-logo"/>
-      <div class="brand-title">Nireus • Σύβοτα</div>
-    </a>
-    <button class="mobile-toggle" aria-label="Μενού">☰</button>
-    <ul>
-      <li><a href="boats.html">Ενοικίαση</a></li>
-      <li><a href="fleet.html">Στόλος</a></li>
-      <li><a href="routes.html">Διαδρομές</a></li>
-      <li><a href="gallery.html">Φωτογραφίες</a></li>
-      <li><a href="about.html">Σχετικά</a></li>
-      <li><a href="faq.html">Συχνές Ερωτήσεις</a></li>
-      <li><a href="contact.html">Επικοινωνία</a></li>
-    </ul>
-  </div>
-</header>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container nav" id="nav">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.svg" alt="Nireus logo" class="brand-logo"/>
+        <div class="brand-title">Nireus • Σύβοτα</div>
+      </a>
+      <button class="mobile-toggle" aria-label="Μενού">☰</button>
+      <ul>
+        <li><a href="boats.html">Ενοικίαση</a></li>
+        <li><a href="fleet.html" aria-current="page">Στόλος</a></li>
+        <li><a href="routes.html">Διαδρομές</a></li>
+        <li><a href="gallery.html">Φωτογραφίες</a></li>
+        <li><a href="about.html">Σχετικά</a></li>
+        <li><a href="faq.html">Συχνές Ερωτήσεις</a></li>
+        <li><a href="contact.html">Επικοινωνία</a></li>
+      </ul>
+    </div>
+  </header>
 
   <main>
-    <div class="container">
-      <div class='breadcrumbs'>Αρχική · Στόλος</div>
-    </div>
-    
-<section class="section">
-  <div class="container">
-    <h2>Στόλος</h2>
-    <p class="sub">Καθαρά, καλοσυντηρημένα σκάφη για κάθε ανάγκη.</p>
-    <div class="card-grid">
-      <article class="card">
-        <div class="img"><img src="img/boat_TEST.jpg" alt="Nireus 30hp"/></div>
-        <div class="body"><h3>Nireus 30hp</h3><ul class="list"><li>Μη απαιτείται δίπλωμα</li><li>Bimini σκίαστρο</li><li>Σκάλες, ψυγείο, GPS tracker</li></ul></div>
-      </article>
-      <article class="card">
-        <div class="img"><img src="img/boat_TEST.jpg" alt="Poseidon 40hp"/></div>
-        <div class="body"><h3>Poseidon 40hp</h3><ul class="list"><li>Επιπλέον ισχύς</li><li>Ηχοσύστημα</li><li>Ιδανικό για 6 άτομα</li></ul></div>
-      </article>
-      <article class="card">
-        <div class="img"><img src="img/boat_TEST.jpg" alt="RIB 150hp"/></div>
-        <div class="body"><h3>RIB 150hp</h3><ul class="list"><li>Δίπλωμα ή skipper</li><li>GPS/Plotter</li><li>Μεγάλες αποστάσεις</li></ul></div>
-      </article>
-    </div>
-  </div>
-</section>
+    <section class="section" aria-labelledby="fleet-title">
+      <div class="container">
+        <h2 id="fleet-title" style="text-align:center">Στόλος</h2>
+        <p class="sub" style="text-align:center; margin-top:-4px">Διαλέξτε κατηγορία</p>
 
+        <!-- ===== Flicker / Tabs (SPEEDBOATS vs LICENCE FREE) ===== -->
+        <div class="tabs" role="tablist" aria-label="Κατηγορίες σκαφών">
+          <div class="segmented">
+            <input type="radio" name="fleet-tab" id="tab-speed" checked>
+            <label role="tab" aria-controls="panel-speed" aria-selected="true" tabindex="0" for="tab-speed">SPEEDBOATS</label>
+
+            <input type="radio" name="fleet-tab" id="tab-licfree">
+            <label role="tab" aria-controls="panel-licfree" aria-selected="false" tabindex="-1" for="tab-licfree">LICENCE-FREE BOATS</label>
+          </div>
+        </div>
+
+        <!-- ===== SPEEDBOATS ===== -->
+        <div id="panel-speed" class="panel" role="tabpanel" aria-labelledby="tab-speed">
+          <div class="card-grid" id="speedboats">
+            <!-- Futura -->
+            <article class="card">
+              <div class="img"><img src="img/skipper_TEST.jpg" alt="Futura 6.5m 150hp" loading="lazy"></div>
+              <div class="body">
+                <h3>Futura — 6.5m • 10 άτομα • 150hp</h3>
+                  <ul class="features">
+                    <li>Yamaha 4-stroke</li>
+                    <li>Μουσικό σύστημα</li>
+                    <li>Ντους</li>
+                    <li>GPS Garmin</li>
+                    <li>Υδραυλικό τιμόνι</li>
+                    <li>Ηλεκτρική άγκυρα</li>
+                  </ul>
+              </div>
+            </article>
+
+            <!-- Jolly -->
+            <article class="card">
+              <div class="img"><img src="img/skipper_TEST.jpg" alt="Jolly 6m 115hp" loading="lazy"></div>
+              <div class="body">
+                <h3>Jolly — 6m • 10 άτομα • 115hp</h3>
+                <ul class="features">
+                  <li>Yamaha 4-stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                  <li>Ντους</li>
+                  <li>GPS Garmin</li>
+                  <li>Υδραυλικό τιμόνι</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Callegary -->
+            <article class="card">
+              <div class="img"><img src="img/skipper_TEST.jpg" alt="Callegary 7m 150hp" loading="lazy"></div>
+              <div class="body">
+                <h3>Callegary — 7m • 10 άτομα • 150hp</h3>
+                <ul class="features">
+                  <li>Yamaha 4-stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                  <li>Ντους</li>
+                  <li>GPS Garmin</li>
+                  <li>Υδραυλικό τιμόνι</li>
+                  <li>Ηλεκτρική άγκυρα</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Joker Clubman 24 -->
+            <article class="card">
+              <div class="img"><img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"></div>
+              <div class="body">
+                <h3>Joker Clubman 24 — 7.5m • 12 άτομα • 250hp</h3>
+                <ul class="features">
+                  <li>Mercury Verado 4-stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                  <li>Ντους</li>
+                  <li>GPS Garmin</li>
+                  <li>Υδραυλικό τιμόνι</li>
+                  <li>Ηλεκτρική άγκυρα</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ===== LICENCE FREE ===== -->
+        <div id="panel-licfree" class="panel hidden" role="tabpanel" aria-labelledby="tab-licfree">
+          <div class="card-grid" id="licence-free">
+            <!-- KARELAKI -->
+            <article class="card">
+              <div class="img"><img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"></div>
+              <div class="body">
+                <h3>KARELAKI — 4m • 2 άτομα • 25hp</h3>
+                <ul class="features">
+                  <li>Tohachu 4‑stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Zen 3 -->
+            <article class="card">
+              <div class="img"><img src="img/Solo_TEST.jpg" alt="Zen 3 4.55m 30hp" loading="lazy"></div>
+              <div class="body">
+                <h3>Zen 3 — 4.55m • 5 άτομα • 30hp</h3>
+                <ul class="features">
+                  <li>Suzuki 4‑stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Asso -->
+            <article class="card">
+              <div class="img"><img src="img/Solo_TEST.jpg" alt="Asso 4.55m 30hp" loading="lazy"></div>
+              <div class="body">
+                <h3>Asso — 4.55m • 5 άτομα • 30hp</h3>
+                <ul class="features">
+                  <li>Suzuki 4‑stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- KARELAS -->
+            <article class="card">
+              <div class="img"><img src="img/Solo_TEST.jpg" alt="KARELAS 5m 30hp" loading="lazy"></div>
+              <div class="body">
+                <h3>KARELAS — 5m • 6 άτομα • 30hp</h3>
+                <ul class="features">
+                  <li>Yamaha 4-stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                  <li>Υδραυλικό τιμόνι</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- ZEN 5 -->
+            <article class="card">
+              <div class="img"><img src="img/Solo_TEST.jpg" alt="ZEN 5 5.6m 30hp" loading="lazy"></div>
+              <div class="body">
+                <h3>ZEN 5 — 5.6m • 7 άτομα • 30hp</h3>
+                <ul class="features">
+                  <li>Yamaha 4-stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                  <li>Υδραυλικό τιμόνι</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Nireas -->
+            <article class="card">
+              <div class="img"><img src="img/Solo_TEST.jpg" alt="Nireas 5.6m 30hp" loading="lazy"></div>
+              <div class="body">
+                <h3>Nireas — 5.6m • 7 άτομα • 30hp</h3>
+                <ul class="features">
+                  <li>Yamaha 4-stroke</li>
+                  <li>Μουσικό σύστημα</li>
+                  <li>Υδραυλικό τιμόνι</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
-  
-<footer class="footer">
-  <div class="container">
-    <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
-      <div>© 2025 Nireus Boat Rentals — Σύβοτα</div>
+
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+        <div>© 2025 Nireus Boat Rentals — Σύβοτα</div>
+      </div>
+      <div class="small" style="margin-top:8px">
+        * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
+      </div>
     </div>
-    <div class="small" style="margin-top:8px">
-      * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <script src="scripts.js"></script>
 </body>
