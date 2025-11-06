@@ -16,6 +16,61 @@
     .features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin-top:10px;padding:0}
     .features li{list-style:none;display:flex;align-items:flex-start;gap:.5rem;padding:0;font-size:14px;line-height:1.35;color:var(--ink)}
     .features li::before{content:'';flex:0 0 6px;width:6px;height:6px;border-radius:50%;background:var(--sand);margin-top:.35em}
+
+    /* ===== Cards: inline carousel (πολλαπλές εικόνες) ===== */
+    .card .img{ position:relative }
+    .card .img img{
+      position:absolute; inset:0;
+      width:100%; height:100%; object-fit:cover; display:block;
+      opacity:0; transition:opacity .35s ease;
+    }
+    .card .img img.is-active{ opacity:1 }
+
+    /* Προαιρετικό: μικρές τελίτσες κατάστασης */
+    .card .img .dots{
+      position:absolute; left:50%; bottom:8px; transform:translateX(-50%);
+      display:flex; gap:6px; z-index:2; pointer-events:none;
+    }
+    .card .img .dot{
+      width:6px; height:6px; border-radius:999px;
+      background: rgba(255,255,255,.55);
+    }
+    .card .img .dot.is-active{ background:#fff }
+
+    /* ===== Lightbox ===== */
+    .lb-backdrop{
+      position:fixed; inset:0; z-index:2000;
+      background: rgba(0,0,0,.88);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .lb-backdrop[hidden]{ display:none }
+    .lb-dialog{ position:relative; width:min(92vw, 1100px); }
+    .lb-figure{
+      position:relative; background:#000; border-radius:12px; overflow:hidden;
+      aspect-ratio: 16/10;  /* κρατάει ωραίο frame στα desktop */
+    }
+    .lb-figure img{
+      width:100%; height:100%; object-fit:contain; background:#000; display:block;
+    }
+    .lb-close, .lb-prev, .lb-next{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:44px; height:44px; border:none; border-radius:999px; cursor:pointer;
+      display:grid; place-items:center; color:#fff; background: rgba(255,255,255,.18);
+      box-shadow:0 6px 20px rgba(0,0,0,.35);
+      backdrop-filter: blur(2px);
+    }
+    .lb-prev{ left:10px } .lb-next{ right:10px }
+    .lb-close{
+      top:10px; right:10px; transform:none; width:40px; height:40px; 
+    }
+    .lb-close:hover, .lb-prev:hover, .lb-next:hover{ background: rgba(255,255,255,.28) }
+
+    /* Mobile polish */
+    @media (max-width:640px){
+      .lb-dialog{ width:100vw }
+      .lb-figure{ aspect-ratio:auto; height: 86svh }
+    }
+
   </style>
 </head>
 <body>
@@ -62,7 +117,10 @@
           <div class="card-grid" id="speedboats">
             <!-- Futura -->
             <article class="card">
-              <div class="img"><img src="img/skipper_TEST.jpg" alt="Futura 6.5m 150hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/skipper_TEST.jpg" alt="Futura 6.5m 150hp" loading="lazy">
+                <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy">
+              </div>
               <div class="body">
                 <h3>Futura — 6.5m • 10 άτομα • 150hp</h3>
                   <ul class="features">
@@ -78,7 +136,10 @@
 
             <!-- Jolly -->
             <article class="card">
-              <div class="img"><img src="img/skipper_TEST.jpg" alt="Jolly 6m 115hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/skipper_TEST.jpg" alt="Jolly 6m 115hp" loading="lazy">
+                <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"> <!-- TODO -->
+              </div>
               <div class="body">
                 <h3>Jolly — 6m • 10 άτομα • 115hp</h3>
                 <ul class="features">
@@ -93,7 +154,10 @@
 
             <!-- Callegary -->
             <article class="card">
-              <div class="img"><img src="img/skipper_TEST.jpg" alt="Callegary 7m 150hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/skipper_TEST.jpg" alt="Callegary 7m 150hp" loading="lazy">
+              <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"> <!-- TODO -->
+              </div>
               <div class="body">
                 <h3>Callegary — 7m • 10 άτομα • 150hp</h3>
                 <ul class="features">
@@ -109,7 +173,10 @@
 
             <!-- Joker Clubman 24 -->
             <article class="card">
-              <div class="img"><img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy">
+              <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"> <!-- TODO -->
+              </div>
               <div class="body">
                 <h3>Joker Clubman 24 — 7.5m • 12 άτομα • 250hp</h3>
                 <ul class="features">
@@ -131,7 +198,10 @@
           <div class="card-grid" id="licence-free">
             <!-- KARELAKI -->
             <article class="card">
-              <div class="img"><img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy">
+                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
+              </div>
               <div class="body">
                 <h3>KARELAKI — 4m • 2 άτομα • 25hp</h3>
                 <ul class="features">
@@ -143,7 +213,10 @@
 
             <!-- Zen 3 -->
             <article class="card">
-              <div class="img"><img src="img/Solo_TEST.jpg" alt="Zen 3 4.55m 30hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/Solo_TEST.jpg" alt="Zen 3 4.55m 30hp" loading="lazy">
+                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
+              </div>
               <div class="body">
                 <h3>Zen 3 — 4.55m • 5 άτομα • 30hp</h3>
                 <ul class="features">
@@ -155,7 +228,10 @@
 
             <!-- Asso -->
             <article class="card">
-              <div class="img"><img src="img/Solo_TEST.jpg" alt="Asso 4.55m 30hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/Solo_TEST.jpg" alt="Asso 4.55m 30hp" loading="lazy">
+                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
+              </div>
               <div class="body">
                 <h3>Asso — 4.55m • 5 άτομα • 30hp</h3>
                 <ul class="features">
@@ -167,7 +243,10 @@
 
             <!-- KARELAS -->
             <article class="card">
-              <div class="img"><img src="img/Solo_TEST.jpg" alt="KARELAS 5m 30hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/Solo_TEST.jpg" alt="KARELAS 5m 30hp" loading="lazy">
+                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
+              </div>
               <div class="body">
                 <h3>KARELAS — 5m • 6 άτομα • 30hp</h3>
                 <ul class="features">
@@ -180,7 +259,10 @@
 
             <!-- ZEN 5 -->
             <article class="card">
-              <div class="img"><img src="img/Solo_TEST.jpg" alt="ZEN 5 5.6m 30hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/Solo_TEST.jpg" alt="ZEN 5 5.6m 30hp" loading="lazy">
+                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
+              </div>
               <div class="body">
                 <h3>ZEN 5 — 5.6m • 7 άτομα • 30hp</h3>
                 <ul class="features">
@@ -193,7 +275,10 @@
 
             <!-- Nireas -->
             <article class="card">
-              <div class="img"><img src="img/Solo_TEST.jpg" alt="Nireas 5.6m 30hp" loading="lazy"></div>
+              <div class="img">
+                <img src="img/Solo_TEST.jpg" alt="Nireas 5.6m 30hp" loading="lazy">
+                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
+              </div>
               <div class="body">
                 <h3>Nireas — 5.6m • 7 άτομα • 30hp</h3>
                 <ul class="features">

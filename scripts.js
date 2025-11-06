@@ -252,3 +252,143 @@ if (bookingForm){
     window.addEventListener('hashchange', syncFromHash);
     syncFromHash();
   })();
+
+
+  /* ===== Inline carousels μέσα στις κάρτες ===== */
+  (function(){
+  const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+
+  /* ===== Inline carousels μέσα στις κάρτες ===== */
+  function initCardCarousels(){
+    $$('.card .img').forEach(imgWrap => {
+      const imgs = $$('img', imgWrap);
+      if (imgs.length <= 1) return; // Μόνο αν έχουμε 2+
+
+      // state
+      let i = 0;
+      imgs[i].classList.add('is-active');
+
+      // dots
+      const dots = document.createElement('div');
+      dots.className = 'dots';
+      imgs.forEach((_, idx) => {
+        const d = document.createElement('div');
+        d.className = 'dot' + (idx===0 ? ' is-active' : '');
+        dots.appendChild(d);
+      });
+      imgWrap.appendChild(dots);
+
+      const update = (nextIdx) => {
+        imgs[i].classList.remove('is-active');
+        dots.children[i].classList.remove('is-active');
+        i = (nextIdx + imgs.length) % imgs.length;
+        imgs[i].classList.add('is-active');
+        dots.children[i].classList.add('is-active');
+      };
+
+      // auto-rotate (pause on hover)
+      const interval = parseInt(imgWrap.getAttribute('data-interval') || '4200', 10);
+      let timer = setInterval(() => update(i+1), interval);
+      imgWrap.addEventListener('mouseenter', () => { clearInterval(timer); });
+      imgWrap.addEventListener('mouseleave', () => { timer = setInterval(() => update(i+1), interval); });
+
+      // Swipe (mobile)
+      let startX = null;
+      imgWrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+      imgWrap.addEventListener('touchend', e => {
+        if(startX == null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) update(i + (dx < 0 ? 1 : -1));
+        startX = null;
+      });
+
+      // Click → Lightbox
+      imgWrap.style.cursor = 'zoom-in';
+      imgWrap.addEventListener('click', () => openLightbox(imgs.map(im => ({
+        src: im.currentSrc || im.src,
+        alt: im.alt || ''
+      })), i));
+    });
+  }
+
+  /* ===== Lightbox (μία για όλη τη σελίδα) ===== */
+  let lb, lbImg, lbPrev, lbNext, lbClose, curr = 0, list = [];
+  function buildLightboxOnce(){
+    if (lb) return;
+    lb = document.createElement('div');
+    lb.className = 'lb-backdrop';
+    lb.setAttribute('role','dialog');
+    lb.setAttribute('aria-modal','true');
+    lb.setAttribute('hidden','');
+
+    lb.innerHTML = `
+      <div class="lb-dialog">
+        <div class="lb-figure">
+          <img alt="">
+          <button class="lb-prev" aria-label="Προηγούμενη">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M15.5 3.5 7 12l8.5 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="lb-next" aria-label="Επόμενη">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M8.5 3.5 17 12l-8.5 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="lb-close" aria-label="Κλείσιμο">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(lb);
+    lbImg = lb.querySelector('img');
+    lbPrev = lb.querySelector('.lb-prev');
+    lbNext = lb.querySelector('.lb-next');
+    lbClose = lb.querySelector('.lb-close');
+
+    const show = () => {
+      const it = list[curr];
+      lbImg.src = it.src;
+      lbImg.alt = it.alt || '';
+    };
+
+    const step = (dir) => {
+      curr = (curr + dir + list.length) % list.length;
+      show();
+    };
+
+    lbPrev.addEventListener('click', () => step(-1));
+    lbNext.addEventListener('click', () => step(1));
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (lb.hasAttribute('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') step(1);
+      if (e.key === 'ArrowLeft') step(-1);
+    });
+
+    // Basic focus trap: focus στο close
+    lb.addEventListener('transitionend', () => lbClose.focus(), { once:true });
+
+    // Helpers
+    lb._show = () => { lb.removeAttribute('hidden'); document.documentElement.style.overflow='hidden'; show(); lbClose.focus(); };
+    lb._hide = () => { lb.setAttribute('hidden',''); document.documentElement.style.overflow=''; lbImg.removeAttribute('src'); };
+  }
+
+  function openLightbox(items, startIndex=0){
+    buildLightboxOnce();
+    list = items;
+    curr = Math.max(0, Math.min(startIndex, list.length-1));
+    lb._show();
+  }
+
+  function closeLightbox(){ if (lb) lb._hide(); }
+
+  // init
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initCardCarousels, { once:true });
+  } else {
+    initCardCarousels();
+  }
+})();
