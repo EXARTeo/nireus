@@ -122,7 +122,7 @@ if (bookingForm){
     const svc = currentService();
     const boat = BOATS.find(b => b.id === boatEl.value);
     const txt =
-`Ζήτηση Διαθεσιμότητας — Nireys
+`Ζήτηση Διαθεσιμότητας — Nireus
 Υπηρεσία: ${svc}
 Σκάφος: ${boat ? boat.name : "-"}
 Ημερομηνία: ${dateEl.value}
@@ -157,3 +157,68 @@ if (bookingForm){
     }
   }
 }
+
+
+
+
+
+/* ================================================ */
+
+(function initServicesCarouselArrows(){
+  const mq = window.matchMedia('(max-width: 560px)');
+  const track = document.querySelector('#services .cards');
+  const prevBtn = document.getElementById('srvPrev');
+  const nextBtn = document.getElementById('srvNext');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  function metrics(){
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.gap || '12');
+    const padL = parseFloat(style.paddingLeft || '0');
+    const card = track.querySelector('.card');
+    const cardW = card ? card.getBoundingClientRect().width : Math.floor(track.clientWidth * 0.85);
+    const step = cardW + gap;
+    return { gap, padL, cardW, step };
+  }
+
+  function indexNow(){
+    const { padL, step } = metrics();
+    return Math.round((track.scrollLeft - padL) / step);
+  }
+
+  function atStart(){
+    return track.scrollLeft <= 2;
+  }
+  function atEnd(){
+    const max = track.scrollWidth - track.clientWidth - 2;
+    return track.scrollLeft >= max;
+  }
+
+  function updateButtons(){
+    const mobile = mq.matches;
+    prevBtn.style.display = mobile ? '' : 'none';
+    nextBtn.style.display = mobile ? '' : 'none';
+    if (!mobile) return;
+    prevBtn.disabled = atStart();
+    nextBtn.disabled = atEnd();
+  }
+
+  function scrollToIndex(i){
+    const { padL, step } = metrics();
+    const x = padL + i * step;
+    track.scrollTo({ left: x, behavior: 'smooth' });
+  }
+
+  function scrollByStep(dir){
+    const i = indexNow() + dir;
+    scrollToIndex(i);
+  }
+
+  prevBtn.addEventListener('click', () => scrollByStep(-1));
+  nextBtn.addEventListener('click', () => scrollByStep(1));
+  track.addEventListener('scroll', updateButtons, { passive: true });
+  window.addEventListener('resize', updateButtons);
+  (mq.addEventListener ? mq : mq.addListener).addEventListener?.('change', updateButtons) || mq.addListener(updateButtons);
+
+  updateButtons();
+})();

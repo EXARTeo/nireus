@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Ενοικίαση Βάρκας · Nireys Boat Rentals — Σύβοτα</title>
-  <meta name="description" content="Nireys Boat Rentals — Ενοικίαση βάρκας στα Σύβοτα."/>
+  <title>Ενοικίαση Βάρκας · Nireus Boat Rentals — Σύβοτα</title>
+  <meta name="description" content="Nireus Boat Rentals — Ενοικίαση βάρκας στα Σύβοτα."/>
   <link rel="icon" href="assets/logo.svg"/>
   <link rel="stylesheet" href="styles.css"/>
   <style> .nav a[href$="boats.html"]{background: color-mix(in oklab, var(--sea), white 70%)} </style>
@@ -14,8 +14,8 @@
   <header class="site-header">
     <div class="container nav" id="nav">
       <a href="index.html" class="brand">
-        <img src="assets/logo.svg" alt="Nireys logo" class="brand-logo"/>
-        <div class="brand-title">Nireys • Σύβοτα</div>
+        <img src="assets/logo.svg" alt="Nireus logo" class="brand-logo"/>
+        <div class="brand-title">Nireus • Σύβοτα</div>
       </a>
       <button class="mobile-toggle" aria-label="Μενού">☰</button>
       <ul>
@@ -31,7 +31,22 @@
   </header>
 
   
-  <section class="hero hero-photo" style="--hero-image: url('img/Solo_TEST.jpg')">
+<section class="hero hero-with-video">
+    <div class="hero-video-wrap" aria-hidden="true">
+      <video class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="img/hero_poster.jpg">
+        <!-- TODO VIDEO -->
+        <source src="video/NireusBasic.webm" type="video/webm"/>
+        <source src="video/NireusBasic.mp4" type="video/mp4"/>
+        Ο browser σας δεν υποστηρίζει video.
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
     <div class="container wrap hero-content">
       <div>
         <div class="kicker">Σύβοτα • Θεσπρωτία</div>
@@ -122,7 +137,7 @@
   <footer class="footer">
     <div class="container">
       <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
-        <div>© 2025 Nireys Boat Rentals — Σύβοτα</div>
+        <div>© 2025 Nireus Boat Rentals — Σύβοτα</div>
       </div>
       <div class="small" style="margin-top:8px">
         * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
