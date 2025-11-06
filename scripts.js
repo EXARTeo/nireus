@@ -222,3 +222,54 @@ if (bookingForm){
 
   updateButtons();
 })();
+
+
+
+
+// --- Highlight κεντρικής κάρτας ("λευκό πέπλο" σβήνει μόνο εκεί) ---
+(function attachActiveCardHighlight(){
+  const track = document.querySelector('#services .cards');
+  if (!track) return;
+
+  const cards = Array.from(track.querySelectorAll('.card'));
+  if (!cards.length) return;
+
+  const mq = window.matchMedia('(max-width: 560px)');
+  let rafId = null;
+
+  function updateActive(){
+    if (!mq.matches) {
+      // εκτός mobile: καθάρισε την κλάση
+      cards.forEach(c => c.classList.remove('is-active'));
+      return;
+    }
+    const rect = track.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+
+    // βρες την κάρτα με κέντρο πιο κοντά στο centerX
+    let winner = null;
+    let best = Infinity;
+    for (const card of cards){
+      const r = card.getBoundingClientRect();
+      const cardCenter = r.left + r.width / 2;
+      const d = Math.abs(cardCenter - centerX);
+      if (d < best){ best = d; winner = card; }
+    }
+
+    // Εφάρμοσε την κλάση
+    cards.forEach(c => c.classList.toggle('is-active', c === winner));
+  }
+
+  function onScroll(){
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(updateActive);
+  }
+
+  // Αρχικοποίηση + listeners
+  updateActive();
+  track.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateActive);
+
+  // Αν αλλάξει breakpoint, ξανααξιολόγησε
+  (mq.addEventListener ? mq.addEventListener('change', updateActive) : mq.addListener(updateActive));
+})();
