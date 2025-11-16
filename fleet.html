@@ -71,6 +71,87 @@
       .lb-figure{ aspect-ratio:auto; height: 86svh }
     }
 
+    /* ===== Fleet toggle switch (SPEEDBOATS / LICENCE-FREE) ===== */
+    .fleet-toggle{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin: .25rem 0 1rem;
+    }
+
+    .switch{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+    }
+
+    .switch input{
+      position:absolute;
+      opacity:0;
+      width:1px;
+      height:1px;
+    }
+
+    .switch .track{
+      position:relative;
+      width: min(100vw, 362.6px);        /* TODO 70vw */
+      height:40px;
+      border-radius:999px;
+      background:var(--sand);
+      border:1px solid color-mix(in oklab, var(--sand), black 10%);
+      box-shadow:0 6px 20px rgba(0,0,0,.12);
+      padding-inline:18px;                    /* “τραβάει” τα labels προς τις άκρες */
+    }
+
+    .switch .option{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      max-width:45%;
+      font-weight:800;
+      font-size:.9rem;
+      letter-spacing:.2px;
+      user-select:none;
+      pointer-events:none;
+      color:var(--ink-soft);
+      white-space:nowrap;                     /* κρατάει το κείμενο σε μία γραμμή */
+    }
+
+    .switch .option-left{
+      left:18px;                              /* αριστερό label κοντά στην άκρη */
+      text-align:left;
+    }
+
+    .switch .option-right{
+      right:18px;                             /* δεξί label κοντά στην άλλη άκρη */
+      text-align:right;
+    }
+
+
+    .switch .option.active{
+      color:var(--ink);
+    }
+
+    .switch .knob{
+      position:absolute;
+      top:50%;
+      left:4px; /* θέση όταν είναι στα SPEEDBOATS */
+      transform:translateY(-50%);
+      width:calc(50% - 8px);
+      height:32px;
+      border-radius:999px;
+      box-sizing:border-box;
+      background-color: color-mix(in oklab, var(--sea) 60%, transparent); /* η φοσκα!!!*/
+      border:1px solid color-mix(in oklab, var(--sea), black 12%);
+      box-shadow:0 4px 14px rgba(0,0,0,.18);
+      transition:left .24s ease;
+    }
+
+    /* όταν γυρίζει στα LICENCE-FREE */
+    .switch input:checked + .track .knob{
+      left:calc(50% + 4px);
+    }
+
   </style>
 </head>
 <body>
@@ -102,18 +183,26 @@
         <p class="sub" style="text-align:center; margin-top:-4px">Διαλέξτε κατηγορία</p>
 
         <!-- ===== Flicker / Tabs (SPEEDBOATS vs LICENCE FREE) ===== -->
-        <div class="tabs" role="tablist" aria-label="Κατηγορίες σκαφών">
-          <div class="segmented">
-            <input type="radio" name="fleet-tab" id="tab-speed" checked>
-            <label role="tab" aria-controls="panel-speed" aria-selected="true" tabindex="0" for="tab-speed">SPEEDBOATS</label>
-
-            <input type="radio" name="fleet-tab" id="tab-licfree">
-            <label role="tab" aria-controls="panel-licfree" aria-selected="false" tabindex="-1" for="tab-licfree">LICENCE-FREE BOATS</label>
-          </div>
+        <div class="tabs">
+          <section id="fleet-toggle" class="fleet-toggle" role="group" aria-label="Κατηγορίες σκαφών">
+            <label class="switch" for="fleetToggle">
+              <input
+                type="checkbox"
+                id="fleetToggle"
+                aria-controls="panel-speed panel-licfree"
+                aria-label="Εναλλαγή μεταξύ Speedboats και σκαφών χωρίς δίπλωμα"
+              />
+              <span class="track" aria-hidden="true">
+                <span id="tab-speed-label" class="option option-left active">SPEEDBOATS</span>
+                <span id="tab-licfree-label" class="option option-right">LICENCE-FREE BOATS</span>
+                <span class="knob"></span>
+              </span>
+            </label>
+          </section>
         </div>
 
         <!-- ===== SPEEDBOATS ===== -->
-        <div id="panel-speed" class="panel" role="tabpanel" aria-labelledby="tab-speed">
+        <div id="panel-speed" class="panel" role="tabpanel" aria-labelledby="tab-speed-label">
           <div class="card-grid" id="speedboats">
             <!-- Futura -->
             <article class="card">
@@ -194,7 +283,7 @@
         </div>
 
         <!-- ===== LICENCE FREE ===== -->
-        <div id="panel-licfree" class="panel hidden" role="tabpanel" aria-labelledby="tab-licfree">
+        <div id="panel-licfree" class="panel hidden" role="tabpanel" aria-labelledby="tab-licfree-label">
           <div class="card-grid" id="licence-free">
             <!-- KARELAKI -->
             <article class="card">

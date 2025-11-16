@@ -224,34 +224,60 @@ if (bookingForm){
 })();
 
 
+// ===== Fleet toggle (SPEEDBOATS / LICENCE-FREE) =====
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle      = document.getElementById('fleetToggle');
+  const speedPanel  = document.getElementById('panel-speed');
+  const licfreePanel= document.getElementById('panel-licfree');
+  const fleetToggle = document.getElementById('fleet-toggle');
+  const optionLeft  = fleetToggle?.querySelector('.option-left');
+  const optionRight = fleetToggle?.querySelector('.option-right');
 
-/* ===================== Flicker behavior ========================= */
-  (function(){
-    const tabSpeed = document.getElementById('tab-speed');
-    const tabFree = document.getElementById('tab-licfree');
-    const pSpeed = document.getElementById('panel-speed');
-    const pFree = document.getElementById('panel-licfree');
+  if (!toggle || !speedPanel || !licfreePanel) return;
 
-    function show(which){
-      const speed = which === 'speed';
-      pSpeed.classList.toggle('hidden', !speed);
-      pFree.classList.toggle('hidden', speed);
-      document.querySelector('label[for="tab-speed"]').setAttribute('aria-selected', speed);
-      document.querySelector('label[for="tab-licfree"]').setAttribute('aria-selected', !speed);
+  function applyFleetState(showLicenceFree){
+    if (showLicenceFree) {
+      // LICENCE-FREE BOATS
+      speedPanel.classList.add('hidden');
+      licfreePanel.classList.remove('hidden');
+      optionLeft?.classList.remove('active');
+      optionRight?.classList.add('active');
+    } else {
+      // SPEEDBOATS
+      licfreePanel.classList.add('hidden');
+      speedPanel.classList.remove('hidden');
+      optionRight?.classList.remove('active');
+      optionLeft?.classList.add('active');
     }
+  }
 
-    tabSpeed.addEventListener('change', ()=> show('speed'));
-    tabFree.addEventListener('change', ()=> show('free'));
-
-    // Deep-link via hash (#speedboats / #licence-free)
-    function syncFromHash(){
-      const h = location.hash.replace('#','');
-      if(h === 'licence-free'){ tabFree.checked = true; show('free'); }
-      else { tabSpeed.checked = true; show('speed'); }
+  // deep-link από hash: #speedboats / #licence-free
+  function syncFromHash(){
+    const h = location.hash.replace('#','');
+    if (h === 'licence-free') {
+      toggle.checked = true;
+      applyFleetState(true);
+    } else if (h === 'speedboats') {
+      toggle.checked = false;
+      applyFleetState(false);
+    } else {
+      // αν δεν υπάρχει σχετικό hash, σεβόμαστε την τωρινή τιμή του toggle
+      applyFleetState(toggle.checked);
     }
-    window.addEventListener('hashchange', syncFromHash);
-    syncFromHash();
-  })();
+  }
+
+  // αρχικό state με βάση το hash ή το toggle
+  syncFromHash();
+
+  // αλλαγή από το switch
+  toggle.addEventListener('change', () => {
+    applyFleetState(toggle.checked);
+  });
+
+  // αλλαγή hash από links στο page
+  window.addEventListener('hashchange', syncFromHash);
+});
+
 
 
   /* ===== Inline carousels μέσα στις κάρτες ===== */
