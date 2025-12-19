@@ -33,9 +33,6 @@ html{
 /* Main γεμίζει τον διαθέσιμο χώρο */
 main{ flex: 1 0 auto }
 
-/* Footer κολλάει στο κάτω μέρος */
-.site-footer{ margin-top: auto }
-
 body{
   margin:0; 
   min-height:100%;
@@ -82,24 +79,48 @@ body::before{
   display:flex; align-items:center; gap:6px;
   list-style:none; margin:0; padding:0
 }
+
 .nav a{
-  padding:8px 12px; border-radius:10px;
-  color:var(--ink-soft); transition:.2s; text-decoration:none
+  padding:2px 12px; border-radius:10px;
+  color:var(--ink-soft); transition:.2s; text-decoration:none;
+  position: relative;
+  display: inline-block;
 }
 .nav a:hover{ background:rgba(158,193,207,.18); color:var(--ink) }
-.nav a[aria-current="page"]{ color: var(--sea) }
 
-/* Button στιλ για "Επικοινωνία" (διακριτικό) */
-.btn.btn-primary{
-  background:rgba(158,193,207,.20);
-  border:1px solid rgba(158,193,207,.35);
-  color:var(--ink)
-}
-.btn.btn-primary:hover{
-  background: color-mix(in oklab, var(--sea), transparent 70%);
-  background: rgb(from var(--sea) r g b / .30);   /* when is supported otherwise goes up to fallback */
+/* active link: χωρίς background */
+.nav a[aria-current="page"]{
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none; /* για να μην υπάρχει το κλασικό underline */
 }
 
+/* η γραμμή */
+.nav a[aria-current="page"]::after{
+  content:"";
+  position:absolute;
+
+  /* αυτά (12px) ταιριάζουν με το padding σου: 8px 12px */
+  left:12px;
+  right:12px;
+
+  bottom:1px;     /* παίξε λίγο: 0px–6px */
+  height:1px;
+  background:#000;
+
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: nav-underline .28s ease-out forwards;
+}
+
+@keyframes nav-underline{
+  to{ transform: scaleX(1); }
+}
+
+/* να μην “κουμπώνει” background στο hover όταν είναι active */
+.nav a[aria-current="page"]:hover{
+  background: transparent;
+}
 
 /* ========== Mobile menu (απλό & μικρό) ========== */
 .mobile-toggle{
@@ -148,11 +169,6 @@ body::before{
     grid-template-columns:1fr
   } 
 }
-/* TODO MAYBE DELETE */
-@media (max-width: 520px){
-  :root{ --wave-overlap: 32px; }
-}
-
 
 .hero.hero-with-video{
   isolation: isolate;
@@ -175,7 +191,6 @@ body::before{
   display:block;
 }
 
-
 .hero.hero-with-video .hero-overlay{
   position:absolute; inset:0;
   background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35));
@@ -195,7 +210,6 @@ h1{ font-size: clamp(28px, 4vw, 46px); margin:.2em 0 .4em }
 .lead{ font-size: clamp(16px, 2.2vw, 20px); color:var(--wheat-soft) }
 .cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
 
-
 /* ΜΟΝΟ όταν υπάρχει hero πριν από το main, πρόσθεσε offset ίσο με το ύψος του hero */
 .hero + main{
   margin-top: var(--hero-h);
@@ -203,11 +217,9 @@ h1{ font-size: clamp(28px, 4vw, 46px); margin:.2em 0 .4em }
   z-index: 1;
   background: var(--sea);            /* TODO  main only for index.html*/
   padding-top: 1px;                  /* μόνο για να σπάσει το collapsing */
-
 }
 
 main{ background: var(--sea);}      /* TODO main for ALL .html*/
-
 
 /* =============== Wave separator — inline SVG =============== */
 :root{
@@ -222,13 +234,6 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
 
   /* Overscan: πόσο πιο φαρδύ από το 100% είναι το SVG ώστε να μη φανούν άκρα */
   --wave-overscan: 30%;    /* αύξησέ το αν ποτέ ξαναδεις άκρα (π.χ. 40%) */
-}
-
-/* main κάτω από το fixed hero */
-.hero + main{
-  margin-top: var(--hero-h);
-  position: relative;
-  z-index: 2;
 }
 
 /* Κορυφή του main */
@@ -259,7 +264,6 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
   animation: wave-horiz var(--wave-duration) ease-in-out infinite;
 }
 
-
 /* Χρώμα κύματος */
 .wave-path{ fill: var(--sea) }
 
@@ -269,11 +273,9 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
   100% { transform: translateX(calc(-1 * var(--wave-shift-px))) } /* αριστερά */
 }
 
-
 @media (prefers-reduced-motion: reduce){
   .wave-sep .wave-slide{ animation: none }
 }
-
 
 /* ==================== BUTTOMS ==================== */
 .btn{
@@ -316,6 +318,26 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
 }
 .btn.btn-ghost:active{ transform: translateY(1px) }
 
+/* Reverse */
+.btn.btn-ghost-rev{
+  background: var(--wheat);
+  border-color: color-mix(in oklab, var(--wheat), black 12%);
+  color: var(--ink); /* σκουρόχρωμο κείμενο για κοντράστ */
+}
+
+.btn.btn-ghost-rev:hover{
+  background: color-mix(in oklab, var(--wheat), transparent 70%);
+  background: rgb(from var(--wheat) r g b / .30);   /* when is supported otherwise goes up to fallback */
+  
+  border-color: color-mix(in oklab, var(--wheat), black 12%);
+  color: var(--wheat); 
+}
+
+.btn.btn-ghost-rev:active{
+  transform: translateY(1px)
+}
+
+/* ///////////////////////////////////////////////////////////////// */
 /* Στο hero, ενισχύουμε hover states πάνω σε σκοτεινό φόντο */
 .hero.hero-with-video .btn.btn-primary:hover{
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
@@ -324,6 +346,7 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
   /* κάνε το περίγραμμα πιο ευδιάκριτο πάνω στο video */
   border-color: color-mix(in oklab, var(--wheat), white 10%);
 }
+
 /* ============================ CARD GRID ============================ */
 
 .card-grid{ 
@@ -410,23 +433,10 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
   }
 }
 
-
-
-
 /* ============================ SECTION ============================ */
 .section{ padding:56px 0 }
 .section h2{ font-size: clamp(22px, 3vw, 34px); margin:0 0 8px }
 .section .sub{ color:var(--ink-soft); margin:0 0 22px }
-
-.tile{ grid-column: span 4; aspect-ratio: 4/3; border-radius:16px; overflow:hidden }
-.tile.wide{ grid-column: span 8; aspect-ratio: 16/9 }
-.tile.tall{ grid-column: span 4; aspect-ratio: 3/4 }
-.tile img{ width:100%; height:100%; object-fit:cover; display:block }
-
-
-.gallery{ display:grid; grid-template-columns: repeat(12, 1fr); gap:10px }
-
-
 
 /* ============================ FOOTER ============================ */
 
@@ -439,65 +449,11 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
   color:var(--ink-soft); font-size:14px;
 }
 
-.badges{ display:flex; gap:8px; flex-wrap:wrap }
-.badge{ background:var(--wheat); padding:6px 10px; border-radius:999px; font-weight:700 }
-
-.grid-two{ display:grid; grid-template-columns: 1fr 1fr; gap:24px }
-@media (max-width: 900px){ .grid-two{ grid-template-columns:1fr } }
-
-.feature{ display:flex; gap:12px; align-items:flex-start }
-.feature i{ font-style:normal; font-size:22px }
-
 .list{ padding-left:18px }
-
-.notice{
-  padding:12px 14px; border-left:4px solid var(--sea);
-  background: color-mix(in oklab, var(--sea), white 82%);
-  border-radius:10px
-}
-
-.table{
-  width:100%; border-collapse:collapse; background:var(--white);
-  border-radius:16px; overflow:hidden; box-shadow: 0 8px 22px rgba(0,0,0,.04)
-}
-.table th,.table td{
-  padding:12px 10px;
-  border-bottom:1px solid color-mix(in oklab, var(--wheat), black 10%);
-  text-align:left
-}
-.table th{ background: color-mix(in oklab, var(--wheat), white 70%); font-size:14px }
-
-.figure{
-  background:var(--white);
-  border:1px solid color-mix(in oklab, var(--wheat), black 10%);
-  border-radius:16px; overflow:hidden
-}
-.figure img{ width:100%; display:block }
 
 .small{ font-size:13px; color:var(--ink-soft) }
 
-form{ display:grid; gap:12px }
-input, textarea, select{
-  padding:12px 12px;
-  border:1px solid color-mix(in oklab, var(--wheat), black 10%);
-  border-radius:12px; background:var(--white);
-  font: inherit;
-}
-input:focus, textarea:focus, select:focus{
-  outline:2px solid color-mix(in oklab, var(--sea), black 6%)
-}
-label{ font-weight:700; font-size:14px }
-
-hr.sep{
-  border:0; height:1px;
-  background: color-mix(in oklab, var(--wheat), black 14%);
-  margin:24px 0
-}
-
 .breadcrumbs{ font-size:13px; color:var(--ink-soft); margin-bottom:12px }
-.breadcrumbs a{ color:inherit }
-
-
 
 /* ========================= scoped στο #services ========================= */
 #services { position: relative; }
@@ -536,7 +492,6 @@ hr.sep{
     object-fit:cover; object-position:center;
   }
 
-
   /* Τα clickccles keys*/
   #srvPrev, #srvNext{
     position: absolute;
@@ -574,8 +529,6 @@ hr.sep{
   /* #srvPrev svg, #srvNext svg{
     width: 18px; height: 18px; pointer-events: none;
   } */
-
-
 }
 
 /* Κάρτα ως “σκηνή” */
@@ -653,127 +606,167 @@ hr.sep{
   transform:none;
 }
 
-/* ===== Booking page (boats) — scoped styles ===== */
-/* ===================== HERO (photo, no filters) ===================== */
-/* Κληρονομεί το fixed ύψος/offset από τους γενικούς κανόνες .hero του index */
-.hero.hero-photo{
-  color:#fff;
-  background: var(--hero-image) center / cover no-repeat;
-  isolation:isolate;
-}
-.hero.hero-photo .hero-content{ position:relative; z-index:1 }
-.hero.hero-photo .kicker{ letter-spacing:.18em; text-transform:uppercase; font-weight:800; font-size:12px; text-shadow:0 1px 2px rgba(0,0,0,.35) }
-.hero.hero-photo h1{ margin:.2em 0 .4em; text-wrap:balance; text-shadow:0 2px 14px rgba(0,0,0,.26) }
-.hero.hero-photo .lead{ opacity:.96; text-shadow:0 1px 10px rgba(0,0,0,.24) }
-/* προαιρετικό polish πάνω σε φωτό */
-.hero.hero-photo .btn.btn-primary:hover{ box-shadow:0 10px 30px rgba(0,0,0,.25) }
-.hero.hero-photo .btn.btn-ghost{ border-color: rgba(255,255,255,.24) }
 
-/* ===================== BOOKING FORM — Glass & Modern ===================== */
-.booking-section{
-  padding-block:36px 72px;
-  background:transparent 
-}
-.container--narrow{
-  width:min(820px, 92%); 
-  margin:0 auto 
-}
-
-.glass-card{
-  background: rgba(255,255,255,.72);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.10);
-  padding: 18px;
-}
-@media (min-width:680px){ .glass-card{ padding:22px } }
-
-/* Πεδία & labels */
-.field{ 
+/* Contact block links */
+/* ===================== CONTACT v2 (Clean + Premium) ===================== */
+.contact-v2-wrap{
   display:grid;
-  gap:6px
-}
-label{
-  font-weight:700;
-  font-size:14px
-}
-.control{
-  padding:14px 12px;
-  border-radius:14px;
-  border:1px solid color-mix(in oklab, var(--wheat), black 10%);
-  background:#fff;
-  transition:border-color .15s ease, box-shadow .15s ease;
-}
-.control:focus{
-  outline:none;
-  border-color: color-mix(in oklab, var(--sea), black 10%);
-  box-shadow:0 0 0 4px color-mix(in oklab, var(--sea), white 85%);
+  grid-template-columns: 1fr 1.1fr;
+  gap: 28px;
+  align-items: start;
 }
 
-/* Segmented radio (Υπηρεσία) */
-.segmented{
-  display:grid; grid-template-columns:1fr; gap:8px; margin-top:4px;
-}
-.segmented input[type="radio"]{ position:absolute; opacity:0; pointer-events:none }
-.segmented label{
-  display:block; padding:10px 12px;
-  border:1px solid color-mix(in oklab, var(--wheat), black 12%);
-  border-radius:12px; cursor:pointer; background:#fff; font-weight:700;
-  transition: background .15s, border-color .15s, color .15s, box-shadow .15s;
-}
-.segmented input[type="radio"]:checked + label{
-  background: var(--sea);
-  border-color: color-mix(in oklab, var(--sea), black 14%);
-  color: var(--ink);
-  box-shadow: 0 6px 20px rgba(0,0,0,.10);
-}
-@media (min-width:700px){ .segmented{ grid-template-columns: repeat(3, 1fr) } }
+/* κρίσιμο για να μη κάνει overflow σε mobile */
+.contact-v2-wrap > *{ min-width: 0; }
 
-/* Μικρή σειρά metadata κάτω από segmented */
-.meta-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px }
-.meta-pill{
-  display:inline-flex; align-items:center; gap:6px;
-  padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700;
-  background: color-mix(in oklab, var(--sea), white 80%);
+@media (max-width: 900px){
+  .contact-v2-wrap{ grid-template-columns: 1fr; }
+}
+
+.contact-kicker{
+  font-size: 12px;
+  letter-spacing: .18em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--sea);
+  margin-bottom: 10px;
+}
+
+.contact-title{
+  margin: 0 0 10px;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.05;
+}
+
+.contact-lead{
+  margin: 0 0 10px;
   color: var(--ink-soft);
-  border: 1px solid color-mix(in oklab, var(--sea), black 10%);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 56ch;
 }
 
-/* Availability note */
-.availability{
-  margin-top:6px; padding:10px 12px; border-radius:12px;
-  background: color-mix(in oklab, var(--sea), white 86%);
-  border: 1px solid color-mix(in oklab, var(--sea), black 10%);
-  color: var(--ink); font-size:14px; display:none;
-}
-.availability.show{ display:block }
-
-/* CTA row μέσα στη φόρμα */
-.booking-section .cta{ margin-top:6px; gap:10px; flex-wrap:wrap }
-#whatsBtn.btn.btn-primary{
-  display:inline-flex; align-items:center; gap:8px;
-}
-#whatsBtn.btn.btn-primary::before{
-  content:""; width:18px; height:18px; flex:0 0 18px;
-  background: url("assets/whatsapp.svg") center / contain no-repeat;
-  filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+.contact-hours{
+  margin: 0 0 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: .95;
 }
 
-/* Inputs grid */
-.grid-two{ display:grid; grid-template-columns:1fr 1fr; gap:16px }
-@media (max-width:900px){ .grid-two{ grid-template-columns:1fr } }
-
-/* Terms */
-.terms-note{ margin:4px 0 0; opacity:.8 }
-
-/* Buttons polish μέσα στη φόρμα */
-.glass-card .btn{ border-radius:14px }
-
-/* Textarea: μόνο κάθετο resize, ποτέ οριζόντιο */
-textarea.control{
-  width:100%; box-sizing:border-box;
-  resize: vertical;
-  min-height:132px; overflow:auto;
+.contact-list{
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
 }
+
+.contact-row{
+  display:grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: start;
+
+  text-decoration: none;
+  color: var(--ink);
+
+  padding: 14px 14px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(6px);
+
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.contact-row:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,0,0,.14);
+  background: rgba(255,255,255,.86);
+}
+
+.contact-text{
+  display:block;
+  min-width: 0;
+}
+
+.contact-label{
+  display:block;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 2px 0 6px;
+}
+
+.contact-value{
+  display:block;
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.contact-note{
+  display:block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  opacity: .92;
+}
+
+/* Map */
+.contact-map{
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #fff;
+  aspect-ratio: 16 / 12;
+  min-height: 320px;
+  width: 100%;
+}
+
+.contact-map iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 900px){
+  .contact-map{ min-height: 360px; }
+}
+
+.contact-v2-head{
+  grid-column: 1 / -1;     /* πάνω από αριστερά + δεξιά */
+  text-align: center;
+  margin-top: -10px;        /* πιο πάνω (ρύθμισέ το -6 έως -16 αν θες) */
+  margin-bottom: 18px;
+}
+
+/* για να μην έχει υπερβολικό κενό */
+.contact-title{ margin: 0 0 10px; }
+.contact-lead{ margin: 0 auto 10px; }
+.contact-hours{ margin: 0 auto 0; }
+
+/* Remove icon box completely */
+.contact-ico{
+  width: auto;
+  height: auto;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  display: block;       /* όχι grid */
+  place-items: unset;   /* για σιγουριά */
+  padding: 0;
+}
+
+.contact-ico svg{
+  width: 32px;   /* παίξε 30–36 */
+  height: 32px;
+  display: block;
+}
+.contact-row{
+  grid-template-columns: 34px 1fr; /* λίγο μεγαλύτερο από το svg */
+  align-items: center;             /* κάθεται ωραία με το κείμενο */
+}
+
