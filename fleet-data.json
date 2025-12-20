@@ -1,0 +1,164 @@
+{
+  "speedboats": [
+    {
+      "name": "Futura",
+      "length": "6.5m",
+      "people": 10,
+      "hp": "150hp",
+      "images": [
+        { "src": "img/skipper_TEST.jpg", "alt": "Futura 6.5m 150hp" },
+        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+      ],
+      "features": [
+        "Yamaha 4-stroke",
+        "Μουσικό σύστημα",
+        "Ντους",
+        "GPS Garmin",
+        "Υδραυλικό τιμόνι",
+        "Ηλεκτρική άγκυρα"
+      ]
+    },
+    {
+      "name": "Jolly",
+      "length": "6m",
+      "people": 10,
+      "hp": "115hp",
+      "images": [
+        { "src": "img/skipper_TEST.jpg", "alt": "Jolly 6m 115hp" },
+        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+      ],
+      "features": [
+        "Yamaha 4-stroke",
+        "Μουσικό σύστημα",
+        "Ντους",
+        "GPS Garmin",
+        "Υδραυλικό τιμόνι"
+      ]
+    },
+    {
+      "name": "Callegary",
+      "length": "7m",
+      "people": 10,
+      "hp": "150hp",
+      "images": [
+        { "src": "img/skipper_TEST.jpg", "alt": "Callegary 7m 150hp" },
+        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+      ],
+      "features": [
+        "Yamaha 4-stroke",
+        "Μουσικό σύστημα",
+        "Ντους",
+        "GPS Garmin",
+        "Υδραυλικό τιμόνι",
+        "Ηλεκτρική άγκυρα"
+      ]
+    },
+    {
+      "name": "Joker Clubman 24",
+      "length": "7.5m",
+      "people": 12,
+      "hp": "250hp",
+      "images": [
+        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" },
+        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+      ],
+      "features": [
+        "Mercury Verado 4-stroke",
+        "Μουσικό σύστημα",
+        "Ντους",
+        "GPS Garmin",
+        "Υδραυλικό τιμόνι",
+        "Ηλεκτρική άγκυρα"
+      ]
+    }
+  ],
+  "licenceFree": [
+    {
+      "name": "KARELAKI",
+      "length": "4m",
+      "people": 2,
+      "hp": "25hp",
+      "images": [
+        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" },
+        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+      ],
+      "features": [
+        "Tohachu 4-stroke",
+        "Μουσικό σύστημα"
+      ]
+    },
+    {
+      "name": "Zen 3",
+      "length": "4.55m",
+      "people": 5,
+      "hp": "30hp",
+      "images": [
+        { "src": "img/Solo_TEST.jpg", "alt": "Zen 3 4.55m 30hp" },
+        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+      ],
+      "features": [
+        "Suzuki 4-stroke",
+        "Μουσικό σύστημα"
+      ]
+    },
+    {
+      "name": "Asso",
+      "length": "4.55m",
+      "people": 5,
+      "hp": "30hp",
+      "images": [
+        { "src": "img/Solo_TEST.jpg", "alt": "Asso 4.55m 30hp" },
+        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+      ],
+      "features": [
+        "Suzuki 4-stroke",
+        "Μουσικό σύστημα"
+      ]
+    },
+    {
+      "name": "KARELAS",
+      "length": "5m",
+      "people": 6,
+      "hp": "30hp",
+      "images": [
+        { "src": "img/Solo_TEST.jpg", "alt": "KARELAS 5m 30hp" },
+        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+      ],
+      "features": [
+        "Yamaha 4-stroke",
+        "Μουσικό σύστημα",
+        "Υδραυλικό τιμόνι"
+      ]
+    },
+    {
+      "name": "ZEN 5",
+      "length": "5.6m",
+      "people": 7,
+      "hp": "30hp",
+      "images": [
+        { "src": "img/Solo_TEST.jpg", "alt": "ZEN 5 5.6m 30hp" },
+        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+      ],
+      "features": [
+        "Yamaha 4-stroke",
+        "Μουσικό σύστημα",
+        "Υδραυλικό τιμόνι"
+      ]
+    },
+    {
+      "name": "Nireas",
+      "length": "5.6m",
+      "people": 7,
+      "hp": "30hp",
+      "images": [
+        { "src": "img/Solo_TEST.jpg", "alt": "Nireas 5.6m 30hp" },
+        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+      ],
+      "features": [
+        "Yamaha 4-stroke",
+        "Μουσικό σύστημα",
+        "Υδραυλικό τιμόνι"
+      ]
+    }
+  ]
+}

@@ -37,6 +37,27 @@
     }
     .card .img .dot.is-active{ background:#fff }
 
+    /* ===== Boat title layout===== */
+    .boat-head{
+      text-align:center;
+      margin-bottom: 8px;
+    }
+
+    .boat-name{
+      margin: 0;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+
+    .boat-specs{
+      margin-top: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+
+
     /* ===== Lightbox ===== */
     .lb-backdrop{
       position:fixed; inset:0; z-index:2000;
@@ -200,182 +221,12 @@
 
         <!-- ===== SPEEDBOATS ===== -->
         <div id="panel-speed" class="panel" role="tabpanel" aria-labelledby="tab-speed-label">
-          <div class="card-grid" id="speedboats">
-            <!-- Futura -->
-            <article class="card">
-              <div class="img">
-                <img src="img/skipper_TEST.jpg" alt="Futura 6.5m 150hp" loading="lazy">
-                <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy">
-              </div>
-              <div class="body">
-                <h3>Futura — 6.5m • 10 άτομα • 150hp</h3>
-                  <ul class="features">
-                    <li>Yamaha 4-stroke</li>
-                    <li>Μουσικό σύστημα</li>
-                    <li>Ντους</li>
-                    <li>GPS Garmin</li>
-                    <li>Υδραυλικό τιμόνι</li>
-                    <li>Ηλεκτρική άγκυρα</li>
-                  </ul>
-              </div>
-            </article>
-
-            <!-- Jolly -->
-            <article class="card">
-              <div class="img">
-                <img src="img/skipper_TEST.jpg" alt="Jolly 6m 115hp" loading="lazy">
-                <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"> <!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>Jolly — 6m • 10 άτομα • 115hp</h3>
-                <ul class="features">
-                  <li>Yamaha 4-stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                  <li>Ντους</li>
-                  <li>GPS Garmin</li>
-                  <li>Υδραυλικό τιμόνι</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- Callegary -->
-            <article class="card">
-              <div class="img">
-                <img src="img/skipper_TEST.jpg" alt="Callegary 7m 150hp" loading="lazy">
-              <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"> <!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>Callegary — 7m • 10 άτομα • 150hp</h3>
-                <ul class="features">
-                  <li>Yamaha 4-stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                  <li>Ντους</li>
-                  <li>GPS Garmin</li>
-                  <li>Υδραυλικό τιμόνι</li>
-                  <li>Ηλεκτρική άγκυρα</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- Joker Clubman 24 -->
-            <article class="card">
-              <div class="img">
-                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy">
-              <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy"> <!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>Joker Clubman 24 — 7.5m • 12 άτομα • 250hp</h3>
-                <ul class="features">
-                  <li>Mercury Verado 4-stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                  <li>Ντους</li>
-                  <li>GPS Garmin</li>
-                  <li>Υδραυλικό τιμόνι</li>
-                  <li>Ηλεκτρική άγκυρα</li>
-                </ul>
-              </div>
-            </article>
-
-          </div>
+          <div class="card-grid" id="speedboats"></div>
         </div>
 
         <!-- ===== LICENCE FREE ===== -->
         <div id="panel-licfree" class="panel hidden" role="tabpanel" aria-labelledby="tab-licfree-label">
-          <div class="card-grid" id="licence-free">
-            <!-- KARELAKI -->
-            <article class="card">
-              <div class="img">
-                <img src="img/Solo_TEST.jpg" alt="KARELAKI 4m 25hp" loading="lazy">
-                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>KARELAKI — 4m • 2 άτομα • 25hp</h3>
-                <ul class="features">
-                  <li>Tohachu 4‑stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- Zen 3 -->
-            <article class="card">
-              <div class="img">
-                <img src="img/Solo_TEST.jpg" alt="Zen 3 4.55m 30hp" loading="lazy">
-                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>Zen 3 — 4.55m • 5 άτομα • 30hp</h3>
-                <ul class="features">
-                  <li>Suzuki 4‑stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- Asso -->
-            <article class="card">
-              <div class="img">
-                <img src="img/Solo_TEST.jpg" alt="Asso 4.55m 30hp" loading="lazy">
-                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>Asso — 4.55m • 5 άτομα • 30hp</h3>
-                <ul class="features">
-                  <li>Suzuki 4‑stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- KARELAS -->
-            <article class="card">
-              <div class="img">
-                <img src="img/Solo_TEST.jpg" alt="KARELAS 5m 30hp" loading="lazy">
-                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>KARELAS — 5m • 6 άτομα • 30hp</h3>
-                <ul class="features">
-                  <li>Yamaha 4-stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                  <li>Υδραυλικό τιμόνι</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- ZEN 5 -->
-            <article class="card">
-              <div class="img">
-                <img src="img/Solo_TEST.jpg" alt="ZEN 5 5.6m 30hp" loading="lazy">
-                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>ZEN 5 — 5.6m • 7 άτομα • 30hp</h3>
-                <ul class="features">
-                  <li>Yamaha 4-stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                  <li>Υδραυλικό τιμόνι</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- Nireas -->
-            <article class="card">
-              <div class="img">
-                <img src="img/Solo_TEST.jpg" alt="Nireas 5.6m 30hp" loading="lazy">
-                <img src="img/skipper_TEST.jpg" alt="Joker Clubman 24 7.5m 250hp" loading="lazy"><!-- TODO -->
-              </div>
-              <div class="body">
-                <h3>Nireas — 5.6m • 7 άτομα • 30hp</h3>
-                <ul class="features">
-                  <li>Yamaha 4-stroke</li>
-                  <li>Μουσικό σύστημα</li>
-                  <li>Υδραυλικό τιμόνι</li>
-                </ul>
-              </div>
-            </article>
-
-          </div>
+          <div class="card-grid" id="licence-free"></div>
         </div>
 
       </div>
@@ -393,6 +244,8 @@
     </div>
   </footer>
 
-  <script src="scripts.js"></script>
+  <script src="scripts/scripts.js"></script>
+  <script src="scripts/fleet-loader.js"></script>
+
 </body>
 </html>

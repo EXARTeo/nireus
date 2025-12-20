@@ -38,8 +38,8 @@
             preload="metadata"
             poster="img/hero_poster.jpg">
         <!-- TODO VIDEO -->
-        <source src="video/NireusBasic.webm" type="video/webm"/>
-        <source src="video/NireusBasic.mp4" type="video/mp4"/>
+        <source src="video/Heart.webm" type="video/webm"/>
+        <source src="video/Heart.mp4" type="video/mp4"/>
         Ο browser σας δεν υποστηρίζει video.
       </video>
       <div class="hero-overlay"></div>
@@ -172,10 +172,6 @@
         <!-- RIGHT: Map -->
         <div class="contact-v2-right" aria-label="Χάρτης τοποθεσίας">
           <div class="contact-map">
-            <!-- IMPORTANT:
-              Για να είναι 100% σωστό το embed, άνοιξε το link στο Google Maps,
-              Share -> Embed a map -> copy το src και αντικατάστησε το παρακάτω.
-            -->
             <iframe
               title="Nireus Boat Rentals — Χάρτης"
               loading="lazy"
@@ -188,7 +184,38 @@
 
       </div>
     </section>
-    
+
+    <!-- Social media icons -->
+    <div id="contact">
+      <span class="socials-title">Follow Us</span>
+      <p class="social-cta" >
+        Περάσατε τέλεια στη βόλτα σας στα Σύβοτα; Κάντε μας tag και δείξτε μας την αγαπημένη σας στάση!
+      </p>
+      <div class="socials" aria-label="Social media">
+        <a href="https://www.instagram.com/seazenboats?igsh=MXNxYzJ4a2Ezd3Y5dg==" target="_blank" rel="noopener" aria-label="Instagram">
+          <!-- Instagram -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="6" y="6" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="16.2" cy="7.8" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+
+        <a href="https://www.tiktok.com/@seazenboats?_t=8lZWLbHML3J&_r=1" target="_blank" rel="noopener" aria-label="TikTok">
+          <!-- TikTok -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M16.7 3c.4 3 2.2 4.8 5.3 5.1v3.2c-1.9.1-3.6-.5-5.2-1.7v7.3c0 4.1-3.3 7.1-7.4 7.1-4.3 0-7.4-3.4-7.4-7.5 0-4.1 3.2-7.5 7.6-7.5.5 0 1 .1 1.5.2v3.5c-.5-.2-1-.4-1.6-.4-2.2 0-4 1.8-4 4.1s1.8 4.1 4 4.1c2.3 0 3.9-1.5 4-4.1V3h3.2Z"/>
+          </svg>
+        </a>
+
+        <a href="https://www.facebook.com/nireysyachting" target="_blank" rel="noopener" aria-label="Facebook">
+          <!-- Facebook -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M13.6 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.3-1.3H16V5.9c-.2 0-1.3-.1-2.5-.1-2.4 0-4 1.5-4 4.2v1.3H7.2V14h2.3v7h4.1Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
 
   </main>
 
@@ -205,6 +232,6 @@
     </div>
   </footer>
 
-  <script src="scripts.js"></script>
+  <script src="scripts/scripts.js"></script>
 </body>
 </html>

@@ -1,3 +1,202 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Πληροφορίες & Διαδρομές · Nireus Boat Rentals — Σύβοτα</title>
+  <meta name="description" content="Προτεινόμενες διαδρομές από Σύβοτα, ιδέες για στάσεις και gallery φωτογραφιών — Nireus Boat Rentals."/>
+  <link rel="icon" href="assets/logo.svg"/>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <style>
+    /* ===== About page: small scoped additions ===== */
+
+    /* Δίνει “ανάσα” κάτω από το fixed header */
+    main.page{
+      padding-top: calc(var(--header-h) + 14px);
+    }
+
+    .page-title{
+      margin: 0 0 8px;
+      text-align:center;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: .2px;
+    }
+    .page-lead{
+      text-align:center;
+      max-width: 75ch;
+      margin: 0 auto;
+    }
+
+    /* Small info strip */
+    .info-strip{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 900px){
+      .info-strip{ grid-template-columns: 1fr; }
+    }
+    .info-mini .body{ padding: 14px; }
+    .info-mini h3{ margin: 0 0 6px; font-size: 16px; }
+    .info-mini p{ margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+
+    /* Route card bits */
+    .route-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .route-head h3{
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 6px;
+      justify-content:flex-end;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 800;
+      background: color-mix(in oklab, var(--sand), white 55%);
+      border: 1px solid rgba(0,0,0,.08);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 16px;
+      margin: 10px 0 0;
+      padding: 0;
+    }
+    .features li{
+      list-style:none;
+      display:flex;
+      align-items:flex-start;
+      gap: .5rem;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+    .features li::before{
+      content:'';
+      flex: 0 0 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--wheat);
+      margin-top: .35em;
+    }
+    .note{
+      margin-top: 14px;
+      text-align:center;
+      opacity: .95;
+    }
+
+    /* Gallery grid */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 900px){
+      .gallery-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px){
+      .gallery-grid{ grid-template-columns: 1fr; }
+    }
+
+    .gallery-card .body{
+      padding: 12px 14px;
+    }
+    .gallery-card .caption{
+      margin: 0;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .gallery-card .small{
+      margin-top: 6px;
+    }
+
+    /* 2-col “before you go” */
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+    .two-col .card .body h3{ margin-top: 0; }
+
+    /* ===== Lightbox styles (για το lightbox του scripts.js) ===== */
+    .lb-backdrop{
+      position:fixed; inset:0; z-index:2000;
+      background: rgba(0,0,0,.88);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .lb-backdrop[hidden]{ display:none }
+    .lb-dialog{ position:relative; width:min(92vw, 1100px); }
+    .lb-figure{
+      position:relative; background:#000; border-radius:12px; overflow:hidden;
+      aspect-ratio: 16/10;
+    }
+    .lb-figure img{
+      width:100%; height:100%; object-fit:contain; background:#000; display:block;
+    }
+    .lb-close, .lb-prev, .lb-next{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:44px; height:44px; border:none; border-radius:999px; cursor:pointer;
+      display:grid; place-items:center; color:#fff; background: rgba(255,255,255,.18);
+      box-shadow:0 6px 20px rgba(0,0,0,.35);
+      backdrop-filter: blur(2px);
+    }
+    .lb-prev{ left:10px } .lb-next{ right:10px }
+    .lb-close{ top:10px; right:10px; transform:none; width:40px; height:40px; }
+    .lb-close:hover, .lb-prev:hover, .lb-next:hover{ background: rgba(255,255,255,.28) }
+    @media (max-width:640px){
+      .lb-dialog{ width:100vw }
+      .lb-figure{ aspect-ratio:auto; height: 86svh }
+    }
+
+    /* Για να δουλέψει η εναλλαγή εικόνων (carousel) σε cards */
+    .card .img{ position:relative }
+    .card .img img{
+      position:absolute; inset:0;
+      width:100%; height:100%; object-fit:cover; display:block;
+      opacity:0; transition:opacity .35s ease;
+    }
+    .card .img img.is-active{ opacity:1 }
+    .card .img .dots{
+      position:absolute; left:50%; bottom:8px; transform:translateX(-50%);
+      display:flex; gap:6px; z-index:2; pointer-events:none;
+    }
+    .card .img .dot{
+      width:6px; height:6px; border-radius:999px;
+      background: rgba(255,255,255,.55);
+    }
+    .card .img .dot.is-active{ background:#fff }
+  </style>
+</head>
+
+<body>
+
   <!-- ===== Header ===== -->
   <header class="site-header">
     <div class="container nav" id="nav">
@@ -13,3 +212,361 @@
       </ul>
     </div>
   </header>
+
+  <main class="page">
+
+    <!-- Intro -->
+    <section class="section" aria-labelledby="about-title">
+      <div class="container">
+        <h1 id="about-title" class="page-title">Διαδρομές &amp; φωτογραφίες</h1>
+        <p class="sub page-lead">
+          Εδώ θα βρεις προτεινόμενες στάσεις από τα Σύβοτα, ιδέες ανάλογα με τον χρόνο σου,
+          και ένα μικρό gallery. (Οι χρόνοι/στάσεις είναι ενδεικτικοί — προσαρμόζουμε πάντα ανάλογα με τον καιρό.)
+        </p>
+
+        <div class="info-strip" role="list" aria-label="Σύντομες πληροφορίες">
+          <article class="card info-mini" role="listitem">
+            <div class="body">
+              <h3>Χωρίς δίπλωμα</h3>
+              <p>Εκπαίδευση πριν φύγεις και καθαρές οδηγίες για ασφαλή βόλτα.</p>
+            </div>
+          </article>
+          <article class="card info-mini" role="listitem">
+            <div class="body">
+              <h3>Με skipper</h3>
+              <p>Αν θέλεις πιο “μακρινές” στάσεις ή απόλυτη χαλάρωση, κανονίζουμε καπετάνιο.</p>
+            </div>
+          </article>
+          <article class="card info-mini" role="listitem">
+            <div class="body">
+              <h3>Υποστήριξη</h3>
+              <p>Η ομάδα μας παραμένει διαθέσιμη όσο είσαι στο νερό.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Routes -->
+    <section class="section" aria-labelledby="routes-title">
+      <div class="container">
+        <h2 id="routes-title" style="text-align:center">Προτεινόμενες διαδρομές</h2>
+        <p class="sub" style="text-align:center; margin-top:-4px">Διάλεξε διαδρομή ανάλογα με τον χρόνο και το σκάφος σου.</p>
+
+        <div class="card-grid">
+
+          <!-- Route 1 -->
+          <article class="card">
+            <div class="img" data-interval="5200">
+              <img src="img/Solo_TEST.jpg" alt="Τιρκουάζ νερά κοντά στα Σύβοτα"/>
+              <img src="img/boat_TEST.jpg" alt="Στάση για κολύμπι σε ήρεμο σημείο"/>
+              <img src="img/skipper_TEST.jpg" alt="Θέα νησίδας στα Σύβοτα"/>
+            </div>
+            <div class="body">
+              <div class="route-head">
+                <h3>Σύντομη βόλτα — τιρκουάζ στάσεις</h3>
+                <div class="badges">
+                  <span class="badge">1–2 ώρες</span>
+                  <span class="badge">Easy</span>
+                </div>
+              </div>
+              <ul class="features">
+                <li>1–2 στάσεις για κολύμπι</li>
+                <li>Ιδανικό για οικογένειες</li>
+                <li>Πρωί για πιο ήσυχα νερά</li>
+                <li>Τέλειο για φωτογραφίες</li>
+              </ul>
+              <p class="small" style="margin-top:12px">
+                Tip: Ζήτα μας “ήρεμη πλευρά” ανάλογα με τον άνεμο της ημέρας.
+              </p>
+            </div>
+          </article>
+
+          <!-- Route 2 -->
+          <article class="card">
+            <div class="img" data-interval="4800">
+              <img src="img/boat_TEST.jpg" alt="Βόλτα ανάμεσα σε νησίδες κοντά στα Σύβοτα"/>
+              <img src="img/Solo_TEST.jpg" alt="Ρηχά νερά για στάση"/>
+            </div>
+            <div class="body">
+              <div class="route-head">
+                <h3>Νησίδες &amp; κρυφές γωνιές</h3>
+                <div class="badges">
+                  <span class="badge">2–3 ώρες</span>
+                  <span class="badge">Relax</span>
+                </div>
+              </div>
+              <ul class="features">
+                <li>Περισσότερες επιλογές στάσης</li>
+                <li>Ελαφρύ “island hopping”</li>
+                <li>Σκιερά σημεία για διάλειμμα</li>
+                <li>Συνδυάζεται με snorkeling</li>
+              </ul>
+              <p class="small" style="margin-top:12px">
+                Tip: Αν έχεις μάσκα/αναπνευστήρα, θα το ευχαριστηθείς διπλά.
+              </p>
+            </div>
+          </article>
+
+          <!-- Route 3 -->
+          <article class="card">
+            <div class="img" data-interval="5200">
+              <img src="img/skipper_TEST.jpg" alt="Πλεύση με ταχύπλοο στα Σύβοτα"/>
+              <img src="img/boat_TEST.jpg" alt="Στάση για βουτιά σε βαθύτερα νερά"/>
+            </div>
+            <div class="body">
+              <div class="route-head">
+                <h3>Half-day εμπειρία — περισσότερες στάσεις</h3>
+                <div class="badges">
+                  <span class="badge">3–5 ώρες</span>
+                  <span class="badge">Explorer</span>
+                </div>
+              </div>
+              <ul class="features">
+                <li>3–4 στάσεις για κολύμπι</li>
+                <li>Άνεση για πιο “μακριά” σημεία</li>
+                <li>Χρόνος για χαλάρωση</li>
+                <li>Προτείνεται με έμπειρο χειριστή</li>
+              </ul>
+              <p class="small" style="margin-top:12px">
+                Tip: Ρώτα μας για το ιδανικό “κύκλωμα” σύμφωνα με τον καιρό.
+              </p>
+            </div>
+          </article>
+
+          <!-- Route 4 -->
+          <article class="card">
+            <div class="img" data-interval="4800">
+              <img src="img/Solo_TEST.jpg" alt="Ήρεμη παραλία για στάση"/>
+              <img src="img/boat_TEST.jpg" alt="Θέα θάλασσας στο Ιόνιο"/>
+              <img src="img/skipper_TEST.jpg" alt="Σκάφος στο λιμάνι των Συβότων"/>
+            </div>
+            <div class="body">
+              <div class="route-head">
+                <h3>Ολοήμερη βόλτα — το “best of”</h3>
+                <div class="badges">
+                  <span class="badge">6–8 ώρες</span>
+                  <span class="badge">Full day</span>
+                </div>
+              </div>
+              <ul class="features">
+                <li>Στάσεις + φαγητό/διάλειμμα</li>
+                <li>Πολλές επιλογές ανάλογα με άνεμο</li>
+                <li>Ιδανικό με skipper (προαιρετικά)</li>
+                <li>Χρόνος για πολλές φωτογραφίες</li>
+              </ul>
+              <p class="small" style="margin-top:12px">
+                Tip: Για full day, ξεκινάμε νωρίς για να προλάβεις τα πάντα άνετα.
+              </p>
+            </div>
+          </article>
+
+          <!-- Route 5 -->
+          <article class="card">
+            <div class="img" data-interval="5200">
+              <img src="img/boat_TEST.jpg" alt="Ακτογραμμή στο Ιόνιο"/>
+              <img src="img/Solo_TEST.jpg" alt="Κολύμπι σε καθαρά νερά"/>
+            </div>
+            <div class="body">
+              <div class="route-head">
+                <h3>Sunset στάση — χρυσή ώρα</h3>
+                <div class="badges">
+                  <span class="badge">1.5–2.5 ώρες</span>
+                  <span class="badge">Sunset</span>
+                </div>
+              </div>
+              <ul class="features">
+                <li>Στάση για μπάνιο πριν δύσει</li>
+                <li>Ιδανικό για ζευγάρια</li>
+                <li>Φωτογραφίες “golden hour”</li>
+                <li>Πιο ήρεμα μετά το απόγευμα</li>
+              </ul>
+              <p class="small" style="margin-top:12px">
+                Tip: Πες μας τι ώρα θες να είσαι πίσω, να σε κατευθύνουμε ανάλογα.
+              </p>
+            </div>
+          </article>
+
+          <!-- Route 6 -->
+          <article class="card">
+            <div class="img" data-interval="4800">
+              <img src="img/skipper_TEST.jpg" alt="Ταχύπλοο σε πλεύση"/>
+              <img src="img/boat_TEST.jpg" alt="Στάση για βουτιά"/>
+            </div>
+            <div class="body">
+              <div class="route-head">
+                <h3>Ιδιωτική κρουαζιέρα — “εσύ χαλαρώνεις”</h3>
+                <div class="badges">
+                  <span class="badge">Custom</span>
+                  <span class="badge">With skipper</span>
+                </div>
+              </div>
+              <ul class="features">
+                <li>Διαδρομή κομμένη &amp; ραμμένη σε σένα</li>
+                <li>Στάσεις για κολύμπι + φωτογραφίες</li>
+                <li>Ιδανικό για παρέες</li>
+                <li>Χωρίς άγχος χειρισμού</li>
+              </ul>
+              <p class="small" style="margin-top:12px">
+                Tip: Στείλε μας τι προτιμάς (ήρεμα / σπηλιές / νησίδες / sunset) και το φτιάχνουμε.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="small note">
+          * Τα παραπάνω είναι ενδεικτικά. Θα σας προτείνουμε την καλύτερη διαδρομή με βάση τον καιρό και την εμπειρία σας.
+        </p>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section" aria-labelledby="gallery-title">
+      <div class="container">
+        <h2 id="gallery-title" style="text-align:center">Φωτογραφίες</h2>
+        <p class="sub" style="text-align:center; margin-top:-4px">
+          Βάλε εδώ “δικές σου” φωτογραφίες από στάσεις/σκάφη/νερά — τα παρακάτω είναι placeholders.
+        </p>
+
+        <div class="gallery-grid">
+
+          <article class="card gallery-card">
+            <div class="img" data-interval="5200">
+              <img src="img/Solo_TEST.jpg" alt="Καθαρά νερά στα Σύβοτα"/>
+              <img src="img/boat_TEST.jpg" alt="Θέα θάλασσας"/>
+            </div>
+            <div class="body">
+              <p class="caption">Τιρκουάζ νερά</p>
+              <p class="small">Στάσεις για μπάνιο &amp; χαλάρωση.</p>
+            </div>
+          </article>
+
+          <article class="card gallery-card">
+            <div class="img" data-interval="5200">
+              <img src="img/boat_TEST.jpg" alt="Σκάφος κοντά σε νησίδα"/>
+              <img src="img/skipper_TEST.jpg" alt="Σκάφος στο λιμάνι"/>
+            </div>
+            <div class="body">
+              <p class="caption">Island hopping</p>
+              <p class="small">Μικρές νησίδες και ήρεμες γωνιές.</p>
+            </div>
+          </article>
+
+          <article class="card gallery-card">
+            <div class="img" data-interval="5200">
+              <img src="img/skipper_TEST.jpg" alt="Ταχύπλοο σε βόλτα"/>
+              <img src="img/Solo_TEST.jpg" alt="Στάση για βουτιά"/>
+            </div>
+            <div class="body">
+              <p class="caption">Speedboat vibes</p>
+              <p class="small">Άνεση για περισσότερες στάσεις.</p>
+            </div>
+          </article>
+
+          <article class="card gallery-card">
+            <div class="img" data-interval="5200">
+              <img src="img/Solo_TEST.jpg" alt="Παραλία για στάση"/>
+              <img src="img/boat_TEST.jpg" alt="Ήρεμος όρμος"/>
+            </div>
+            <div class="body">
+              <p class="caption">Ήρεμοι όρμοι</p>
+              <p class="small">Ιδανικά για οικογένειες.</p>
+            </div>
+          </article>
+
+          <article class="card gallery-card">
+            <div class="img" data-interval="5200">
+              <img src="img/boat_TEST.jpg" alt="Ανοιχτή θάλασσα στο Ιόνιο"/>
+              <img src="img/skipper_TEST.jpg" alt="Βόλτα με skipper"/>
+            </div>
+            <div class="body">
+              <p class="caption">Ιδιωτική κρουαζιέρα</p>
+              <p class="small">Χωρίς άγχος — μόνο εμπειρία.</p>
+            </div>
+          </article>
+
+          <article class="card gallery-card">
+            <div class="img" data-interval="5200">
+              <img src="img/skipper_TEST.jpg" alt="Φωτογραφία στο σκάφος"/>
+              <img src="img/boat_TEST.jpg" alt="Θέα στη χρυσή ώρα"/>
+            </div>
+            <div class="body">
+              <p class="caption">Sunset</p>
+              <p class="small">Η καλύτερη ώρα για φωτογραφίες.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Before you go -->
+    <section class="section" aria-labelledby="before-title">
+      <div class="container">
+        <h2 id="before-title" style="text-align:center">Πριν φύγετε</h2>
+        <p class="sub" style="text-align:center; margin-top:-4px">Μικρά tips για να το απολαύσετε χωρίς άγχος.</p>
+
+        <div class="two-col">
+          <article class="card">
+            <div class="body">
+              <h3>Τι να έχετε μαζί σας</h3>
+              <ul class="list">
+                <li>Νερό, καπέλο, αντηλιακό</li>
+                <li>Μάσκα / αναπνευστήρα (αν έχετε)</li>
+                <li>Πετσέτα &amp; στεγνή αλλαξιά</li>
+                <li>Κινητό φορτισμένο</li>
+              </ul>
+              <p class="small">Θα σας πούμε και τα “must” ανάλογα με τη διαδρομή.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="body">
+              <h3>Ασφάλεια στη θάλασσα</h3>
+              <p class="small" style="margin-top:6px">
+                Η θάλασσα είναι χαρά όταν τη σεβόμαστε. Δείτε τις βασικές οδηγίες και ρωτήστε μας για σημεία προς αποφυγή.
+              </p>
+              <div style="margin-top:12px">
+                <a class="btn btn-ghost" href="safety.html">Δείτε οδηγίες ασφάλειας</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="card">
+          <div class="body" style="text-align:center">
+            <h2 id="cta-title" style="margin:0 0 8px">Έτοιμοι για τη βόλτα σας;</h2>
+            <p class="sub" style="margin:0 auto 16px; max-width: 70ch">
+              Πείτε μας πόσο χρόνο έχετε και τι προτιμάτε (ήρεμα / εξερεύνηση / sunset) — και θα σας προτείνουμε διαδρομή &amp; σκάφος.
+            </p>
+            <div class="cta" style="justify-content:center">
+              <a href="contact.html" class="btn btn-primary">Κράτηση / Διαθεσιμότητα</a>
+              <a href="fleet.html" class="btn btn-ghost">Δείτε Στόλο</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+        <div>© 2025 Nireus Boat Rentals — Σύβοτα</div>
+      </div>
+      <div class="small" style="margin-top:8px">
+        * Οδηγίες ασφάλειας & όροι: <a href="safety.html">Ασφάλεια</a> • <a href="terms.html">Όροι & Προϋποθέσεις</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/scripts.js"></script>
+</body>
+</html>
