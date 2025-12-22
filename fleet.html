@@ -173,6 +173,11 @@
       left:calc(50% + 4px);
     }
 
+    /*Οταν δεν εχω "hero" offset κάτω από fixed header */
+    .page-offset{
+      padding-top: var(--header-h);
+    }
+
   </style>
 </head>
 <body>
@@ -182,7 +187,7 @@
     <div class="container nav" id="nav">
       <a href="index.html" class="brand">
         <img src="assets/logo.svg" alt="Nireus logo" class="brand-logo"/>
-        <div class="brand-title">Nireus • Σύβοτα</div>
+        <div class="brand-title">Nireus • Seazen</div>
       </a>
       <button class="mobile-toggle" aria-label="Μενού">☰</button>
       <ul>
@@ -194,7 +199,7 @@
   </header>
 
 
-  <main>
+  <main class="page-offset">
     <section class="section" aria-labelledby="fleet-title">
       <div class="container">
         <h2 id="fleet-title" style="text-align:center">Στόλος</h2>
