@@ -6,8 +6,9 @@
       "people": 10,
       "hp": "150hp",
       "images": [
-        { "src": "img/skipper_TEST.jpg", "alt": "Futura 6.5m 150hp" },
-        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+        { "src": "img/Futura1.jpg", "alt": "Futura 6.5m 150hp front" },
+        { "src": "img/Futura2.jpg", "alt": "Futura 6.5m 150hp back" },
+        { "src": "img/Futura1.jpg", "alt": "Futura 6.5m 150hp 4-stroke" }
       ],
       "features": [
         "Yamaha 4-stroke",
@@ -24,8 +25,9 @@
       "people": 10,
       "hp": "115hp",
       "images": [
-        { "src": "img/skipper_TEST.jpg", "alt": "Jolly 6m 115hp" },
-        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+        { "src": "img/Jolly1.jpg", "alt": "Jolly 6m 115hp side" },
+        { "src": "img/Jolly2.jpg", "alt": "Jolly 6m 115hp side zoom" },
+        { "src": "img/Jolly3.jpg", "alt": "Jolly 6m 115hp front" }
       ],
       "features": [
         "Yamaha 4-stroke",
@@ -41,8 +43,9 @@
       "people": 10,
       "hp": "150hp",
       "images": [
-        { "src": "img/skipper_TEST.jpg", "alt": "Callegary 7m 150hp" },
-        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+        { "src": "img/Callegary1.jpg", "alt": "Callegary 7m 150hp back" },
+        { "src": "img/Callegary2.jpg", "alt": "Callegary 7m 150hp side" },
+        { "src": "img/Callegary3.jpg", "alt": "Callegary 7m 150hp zoomed side" }
       ],
       "features": [
         "Yamaha 4-stroke",
@@ -59,8 +62,9 @@
       "people": 12,
       "hp": "250hp",
       "images": [
-        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" },
-        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" }
+        { "src": "img/JokerClubman1.jpg", "alt": "Joker Clubman 24 7.5m 250hp back-side" },
+        { "src": "img/JokerClubman2.jpg", "alt": "Joker Clubman 24 7.5m 250hp front" },
+        { "src": "img/JokerClubman3.jpg", "alt": "Joker Clubman 24 7.5m 250hp back-zoomed" }
       ],
       "features": [
         "Mercury Verado 4-stroke",
@@ -79,8 +83,9 @@
       "people": 2,
       "hp": "25hp",
       "images": [
-        { "src": "img/Solo_TEST.jpg", "alt": "KARELAKI 4m 25hp" },
-        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+        { "src": "img/Karelaki1.jpg", "alt": "KARELAKI 4m 25hp front" },
+        { "src": "img/Karelaki2.jpg", "alt": "KARELAKI 4m 25hp side" },
+        { "src": "img/Karelaki3.jpg", "alt": "KARELAKI 4m 25hp back" }
       ],
       "features": [
         "Tohachu 4-stroke",
@@ -93,8 +98,9 @@
       "people": 5,
       "hp": "30hp",
       "images": [
-        { "src": "img/Solo_TEST.jpg", "alt": "Zen 3 4.55m 30hp" },
-        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+        { "src": "img/Zen3_1.jpg", "alt": "Zen 3 4.55m 30hp side" },
+        { "src": "img/Zen3_2.jpg", "alt": "Zen 3 4.55m 30hp above pov" },
+        { "src": "img/Zen3_3.jpg", "alt": "Zen 3 4.55m 30hp back" }
       ],
       "features": [
         "Suzuki 4-stroke",
@@ -121,8 +127,9 @@
       "people": 6,
       "hp": "30hp",
       "images": [
-        { "src": "img/Solo_TEST.jpg", "alt": "KARELAS 5m 30hp" },
-        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+        { "src": "img/Karelas1.jpg", "alt": "KARELAS 5m 30hp front" },
+        { "src": "img/Karelas2.jpg", "alt": "KARELAS 5m 30hp side" },
+        { "src": "img/Karelas3.jpg", "alt": "KARELAS 5m 30hp back" }
       ],
       "features": [
         "Yamaha 4-stroke",
@@ -136,8 +143,7 @@
       "people": 7,
       "hp": "30hp",
       "images": [
-        { "src": "img/Solo_TEST.jpg", "alt": "ZEN 5 5.6m 30hp" },
-        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+        { "src": "img/Zen5_1.jpg", "alt": "ZEN 5 5.6m 30hp" }
       ],
       "features": [
         "Yamaha 4-stroke",
