@@ -93,28 +93,14 @@
       ]
     },
     {
-      "name": "Zen 3",
-      "length": "4.55m",
-      "people": 5,
-      "hp": "30hp",
-      "images": [
-        { "src": "img/Zen3_1.jpg", "alt": "Zen 3 4.55m 30hp side" },
-        { "src": "img/Zen3_2.jpg", "alt": "Zen 3 4.55m 30hp above pov" },
-        { "src": "img/Zen3_3.jpg", "alt": "Zen 3 4.55m 30hp back" }
-      ],
-      "features": [
-        "Suzuki 4-stroke",
-        "Μουσικό σύστημα"
-      ]
-    },
-    {
       "name": "Asso",
       "length": "4.55m",
       "people": 5,
       "hp": "30hp",
       "images": [
-        { "src": "img/Solo_TEST.jpg", "alt": "Asso 4.55m 30hp" },
-        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+        { "src": "img/Asso_1.jpg", "alt": "Asso 4.55m 30hp side" },
+        { "src": "img/Asso_2.jpg", "alt": "Asso 4.55m 30hp above pov" },
+        { "src": "img/Asso_3.jpg", "alt": "Asso 4.55m 30hp back" }
       ],
       "features": [
         "Suzuki 4-stroke",
@@ -138,27 +124,12 @@
       ]
     },
     {
-      "name": "ZEN 5",
-      "length": "5.6m",
-      "people": 7,
-      "hp": "30hp",
-      "images": [
-        { "src": "img/Zen5_1.jpg", "alt": "ZEN 5 5.6m 30hp" }
-      ],
-      "features": [
-        "Yamaha 4-stroke",
-        "Μουσικό σύστημα",
-        "Υδραυλικό τιμόνι"
-      ]
-    },
-    {
       "name": "Nireas",
       "length": "5.6m",
       "people": 7,
       "hp": "30hp",
       "images": [
-        { "src": "img/Solo_TEST.jpg", "alt": "Nireas 5.6m 30hp" },
-        { "src": "img/skipper_TEST.jpg", "alt": "Joker Clubman 24 7.5m 250hp" }
+        { "src": "img/Nireas_1.jpg", "alt": "Nireas 5 5.6m 30hp" }
       ],
       "features": [
         "Yamaha 4-stroke",
