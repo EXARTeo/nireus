@@ -456,6 +456,68 @@ main{ background: var(--sea);}      /* TODO main for ALL .html*/
   }
 }
 
+/* ===================== FAQ (compact accordion) ===================== */
+.faq.section{ padding: 40px 0; text-align:center; }
+.faq .sub{ text-align:center; margin-bottom: 14px; }
+
+.faq .faq-list{
+  width: min(760px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+}
+
+.faq .faq-item{
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 16px;
+  padding: 10px 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.03);
+}
+
+.faq .faq-item summary{
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--ink);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq .faq-item summary::-webkit-details-marker{ display:none; }
+
+.faq .faq-item summary::after{
+  content: "›";
+  margin-left: auto;
+  transform: rotate(90deg);
+  transition: transform .18s ease;
+  opacity: .8;
+  font-size: 18px;
+}
+
+.faq .faq-item[open] summary::after{
+  transform: rotate(-90deg);
+}
+
+.faq .faq-a{
+  padding-top: 8px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.faq .faq-a p{ margin: 0; }
+
+@media (max-width: 640px){
+  .faq.section{ padding: 30px 0; }
+  .faq .faq-item{ padding: 10px 12px; border-radius: 14px; }
+  .faq .faq-a{ font-size: 13.5px; }
+}
+
+
+
+
 /* ============================ SECTION ============================ */
 .section{ padding:56px 0 }
 .section h2{ font-size: clamp(22px, 3vw, 34px); margin:0 0 8px }
