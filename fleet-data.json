@@ -93,14 +93,14 @@
       ]
     },
     {
-      "name": "Asso",
+      "name": "Assos",
       "length": "4.55m",
       "people": 5,
       "hp": "30hp",
       "images": [
-        { "src": "img/Asso_1.jpg", "alt": "Asso 4.55m 30hp side" },
-        { "src": "img/Asso_2.jpg", "alt": "Asso 4.55m 30hp above pov" },
-        { "src": "img/Asso_3.jpg", "alt": "Asso 4.55m 30hp back" }
+        { "src": "img/Asso_1.jpg", "alt": "Assos 4.55m 30hp side" },
+        { "src": "img/Asso_2.jpg", "alt": "Assos 4.55m 30hp above pov" },
+        { "src": "img/Asso_3.jpg", "alt": "Assos 4.55m 30hp back" }
       ],
       "features": [
         "Suzuki 4-stroke",
