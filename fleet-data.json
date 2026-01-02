@@ -83,8 +83,6 @@
       "people": 2,
       "hp": "25hp",
       "images": [
-        { "src": "img/Karelaki1.jpg", "alt": "KARELAKI 4m 25hp front" },
-        { "src": "img/Karelaki2.jpg", "alt": "KARELAKI 4m 25hp side" },
         { "src": "img/Karelaki3.jpg", "alt": "KARELAKI 4m 25hp back" }
       ],
       "features": [

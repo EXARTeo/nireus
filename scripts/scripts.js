@@ -201,6 +201,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.Nireus = window.Nireus || {};
   window.Nireus.initCardCarousels = initCardCarousels;
+// gallery starts here
+  function initGalleryLightbox(){
+    $$('.gallery-grid[data-lightbox="gallery"]').forEach(grid => {
+      if (grid.dataset.galleryInit === "1") return;
+
+      const btns = $$('.g-item', grid);
+      if (btns.length === 0) return;
+
+      const imgs = btns
+        .map(b => b.querySelector('img'))
+        .filter(Boolean);
+
+      const items = imgs.map(img => ({
+        src: img.getAttribute('data-full') || img.currentSrc || img.src,
+        alt: img.alt || ''
+      }));
+
+      btns.forEach((btn, idx) => {
+        btn.addEventListener('click', () => openLightbox(items, idx));
+      });
+
+      grid.dataset.galleryInit = "1";
+    });
+  }
+
+  window.Nireus.initGalleryLightbox = initGalleryLightbox;
+// gallery end here
+
 
   /* ===== Lightbox (μία για όλη τη σελίδα) ===== */
   let lb, lbImg, lbPrev, lbNext, lbClose, curr = 0, list = [];
@@ -276,9 +304,15 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeLightbox(){ if (lb) lb._hide(); }
 
   // init
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', initCardCarousels, { once:true });
-  } else {
-    initCardCarousels();
-  }
+function initAllMedia(){
+  initCardCarousels();
+  initGalleryLightbox();
+}
+
+if (document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initAllMedia, { once:true });
+} else {
+  initAllMedia();
+}
+
 })();
