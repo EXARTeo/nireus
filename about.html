@@ -112,6 +112,21 @@
       .lb-figure{ aspect-ratio:auto; height: 86svh }
     }
 
+    /*  Δες φωτογραφιες link μονο */
+    .sub-link{
+      display:inline-block;
+      margin-left: 10px;
+      font-weight: 800;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,.25);
+    }
+
+    .sub-link:hover{
+      border-bottom-color: rgba(0,0,0,.55);
+    }
+
+
   </style>
   
 </head>
@@ -136,14 +151,132 @@
 
   <main class="page page-offset">
 
-    <section class="section gallery" aria-labelledby="gallery-title">
+
+    <section class="section routes" aria-labelledby="routes-title">
+      <div class="container">
+        <h2 id="routes-title">Προτεινόμενες Διαδρομές</h2>
+        <p class="sub">
+          Ενδεικτικές διαδρομές — φτιάχνουμε μαζί και τη δική σου, με στάσεις που επιλέγεις.
+          <a class="sub-link" href="#gallery">Δες φωτογραφίες</a>
+        </p>
+
+
+        <div class="route-grid">
+
+          <!-- Σύβοτα 8ωρο -->
+          <article class="route-card">
+            <header class="route-head">
+              <h3>Σύβοτα</h3>
+              <span class="route-badge">8ωρο</span>
+            </header>
+
+            <div class="route-cols" aria-label="Στάσεις">
+              <div class="route-col">
+                <div class="route-item">Πλάκες</div>
+                <div class="route-item">Πισίνα</div>
+                <div class="route-item">Διαπόρι</div>
+                <div class="route-item">Μπέλα Βράκα</div>
+                <div class="route-item">Σπηλιά</div>
+                <div class="route-item">Πέταλο</div>
+              </div>
+              <div class="route-col">
+                <div class="route-item">Μέγα Άμμος</div>
+                <div class="route-item">Μικρή Άμμος</div>
+                <div class="route-item">Μέγα Ντράφη</div>
+                <div class="route-item">Μικρό Ντράφη</div>
+                <div class="route-item">Αγία Παρασκευή</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Σύβοτα 4ωρο -->
+          <article class="route-card">
+            <header class="route-head">
+              <h3>Σύβοτα</h3>
+              <span class="route-badge">4ωρο</span>
+            </header>
+
+            <div class="route-cols single" aria-label="Στάσεις">
+              <div class="route-col">
+                <div class="route-item">Πλάκες</div>
+                <div class="route-item">Πισίνα</div>
+                <div class="route-item">Διαπόρι</div>
+                <div class="route-item">Σπηλιά</div>
+                <div class="route-item">Μπέλα Βράκα</div>
+                <div class="route-item">Πέταλο</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Παξοί 8ωρο -->
+          <article class="route-card">
+            <header class="route-head">
+              <h3>Παξοί</h3>
+              <span class="route-badge">8ωρο</span>
+            </header>
+
+            <div class="route-split">
+              <div>
+                <div class="route-kicker">Παξοί</div>
+                <div class="route-cols single">
+                  <div class="route-col">
+                    <div class="route-item">Λάκα</div>
+                    <div class="route-item">Γαλάζιες Σπηλιές</div>
+                    <div class="route-item">Βρίκα (Αντίπαξοι)</div>
+                    <div class="route-item">Βουτούμι</div>
+                    <div class="route-item">Καλτσονήσι</div>
+                    <div class="route-item">Γάιος</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="route-kicker">Επιστροφή (Σύβοτα)</div>
+                <div class="route-cols single">
+                  <div class="route-col">
+                    <div class="route-item">Σπηλιές</div>
+                    <div class="route-item">Διαπόρι</div>
+                    <div class="route-item">Μπέλα Βράκα</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Παξοι 4ωρο -->
+          <article class="route-card">
+            <header class="route-head">
+              <h3>Παξοί</h3>
+              <span class="route-badge">4ωρο</span>
+            </header>
+
+            <div class="route-cols single" aria-label="Στάσεις">
+              <div class="route-col">
+                <div class="route-item">Βρίκα (Αντίπαξοι)</div>
+                <div class="route-item">Βουτούμι</div>
+                <div class="route-item">Καλτσονήσι</div>
+                <div class="route-item">Γάιος</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- Saperator -->
+    <div class="separator"></div>
+
+    <section class="section gallery" aria-labelledby="gallery-title" id="gallery">
       <div class="container">
         <h2 id="gallery-title">Gallery</h2>
         <p class="sub">Μια μικρή γεύση από τα νερά & τις στάσεις στα Σύβοτα.</p>
 
         <!--
-          Βάλε εδώ τις 12 φωτογραφίες σου.
-          Αν θες thumbnails + full size στο lightbox:
+          thumbnails + full size στο lightbox:
           - src="...thumb.jpg"
           - data-full="...full.jpg"
         -->
